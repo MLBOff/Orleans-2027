@@ -5,3 +5,7 @@ theme : readthedocs
 palette:
     -scheme: slate
     primary: 'indigo'
+
+
+nav:
+  - Accueil: index.md
