@@ -1,11 +1,4 @@
 site_name: My Docs
 
-theme : readthedocs
-
-palette:
-    -scheme: slate
-    primary: 'indigo'
-
-
-nav:
-  - Accueil: index.md
+theme:
+    Name: readthedocs
