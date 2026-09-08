@@ -1,16 +1,4 @@
 site_name: My Docs
 
-theme :
-  name: material
-  palette:
-    - scheme: default
-      primary: indigo
-      toggle:
-        icon: material/brightness-7
-        name: Passer en mode sombre
-
-    - scheme: slate
-      primary: indigo
-      toggle:
-        icon: material/brightness-4
-        name: Passer en mode clair
+theme:
+    name: readthedocs
