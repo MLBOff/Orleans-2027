@@ -24,18 +24,18 @@ switch: reset
 
 === "Description des commandes"
     | Commande                | Action |
+    |-------------------------|--------|
     | `flash_init`            | Initialise le système de fichiers mémoire FLASH |
     | `del flash:config.text` | Supprime le fichier de configuration de démarrage |
     | `del flash:vlan.dat`    | Supprime la base de données des VLANs enregistrés |
     | `reset`                 | Redémarre le switch avec les paramètres d'usine |
-
-
-
+    
+    
 ### Configuration pas à pas
 
 ```cisco title="Configuration SSH & Compte Utilisateur"
 !-- 1. Nom de l'équipement et Domaine
-configure terminal
+conf t
 hostname SW-ACCESS-01
 ip domain-name domaine.local
 
@@ -60,7 +60,7 @@ line vty 0 15
 Attribution d'une adresse IP d'administration sur une interface VLAN.
 
 ```cisco title="Interface VLAN de Management"
-configure terminal
+conf t
 interface vlan 140
  description VLAN Management
  ip address 10.140.0.1 255.255.255.128
@@ -78,9 +78,8 @@ interface vlan 140
 Procédure pour associer un port du switch à un VLAN spécifique en mode `access`.
 
 ```cisco title="Configuration Interface d'Accès"
-configure terminal
+conf t
 interface FastEthernet 0/1
- description Connexion Poste Utilisateur
  switchport mode access
  switchport access vlan 10
  no shutdown
