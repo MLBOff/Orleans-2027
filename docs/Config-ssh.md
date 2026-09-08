@@ -4,11 +4,10 @@ Ce guide récapitule les procédures essentielles pour la gestion, la réinitial
 
 ---
 
-## 🔄 1. Réinitialisation complète du Switch (Hard Reset)
+## 🔄 1. Réinitialisation complète du Switch
 
 Pour remettre un switch à sa configuration d'usine lorsqu'il est bloqué ou configuré précédemment.
 
-!!! danger "Attention"
     La suppression de `config.text` et `vlan.dat` efface définitivement la configuration existante ainsi que la base de données des VLANs.
 
 ### Procédure étape par étape
@@ -16,7 +15,7 @@ Pour remettre un switch à sa configuration d'usine lorsqu'il est bloqué ou con
 1. Maintenez enfoncé le bouton **MODE** en façade tout en allumant/branchant le switch jusqu'à ce que la LED `SYST` clignote ou reste fixe en vert/ambre.
 2. Une fois dans le prompt d'amorçage `switch:`, saisissez les commandes suivantes :
 
-```cisco title="Prompt switch:"
+```
 switch: flash_init
 switch: del flash:config.text
 switch: del flash:vlan.dat
@@ -24,21 +23,13 @@ switch: reset
 ```
 
 === "Description des commandes"
-    | Commande | Action |
-    | :--- | :--- |
-    | `flash_init` | Initialise le système de fichiers mémoire FLASH |
+    | Commande                | Action |
+    | `flash_init`            | Initialise le système de fichiers mémoire FLASH |
     | `del flash:config.text` | Supprime le fichier de configuration de démarrage |
-    | `del flash:vlan.dat` | Supprime la base de données des VLANs enregistrés |
-    | `reset` | Redémarre le switch avec les paramètres d'usine |
+    | `del flash:vlan.dat`    | Supprime la base de données des VLANs enregistrés |
+    | `reset`                 | Redémarre le switch avec les paramètres d'usine |
 
----
 
-## 🔐 2. Configuration de l'accès SSH & Gestion Utilisateur
-
-Sécurisez l'administration à distance du switch via SSH version 2.
-
-!!! tip "Conseil Sécurité"
-    Il est fortement conseillé de générer une clé RSA d'au moins **2048 bits** pour une sécurité renforcée (au lieu des 1024 bits minimaux).
 
 ### Configuration pas à pas
 
@@ -61,9 +52,6 @@ line vty 0 15
  login local
  exit
 ```
-
-!!! note "Explications des privilèges"
-    Le niveau **`privilege 15`** attribue directement les droits d'administration complets (mode EXEC privilégié `#`) sans repasser par la commande `enable`.
 
 ---
 
