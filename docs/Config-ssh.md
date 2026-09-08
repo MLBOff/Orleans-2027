@@ -23,12 +23,20 @@ switch: reset
 ```
 
 === "Description des commandes"
+
 ```
 flash_init = Initialise le système de fichiers mémoire FLASH 
 del flash:config.text = Supprime le fichier de configuration de démarrage 
 del flash:vlan.dat = Supprime la base de données des VLANs enregistrés 
 reset =  Redémarre le switch avec les paramètres d'usine 
 ```
+=======
+`flash_init`= Initialise le système de fichiers mémoire FLASH |
+`del flash:config.text` = Supprime le fichier de configuration de démarrage |
+`del flash:vlan.dat` = Supprime la base de données des VLANs enregistrés |
+`reset` =  Redémarre le switch avec les paramètres d'usine |
+    
+
     
 ### Configuration pas à pas
 
