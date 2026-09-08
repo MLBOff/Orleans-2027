@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Renumérotation du switch 2 en switch 1 - My Docs</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Renum\u00e9rotation du switch 2 en switch 1";
+        var mkdocs_page_input_path = "Probl\u00e8me/Stack.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> My Docs
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">📚 Documentation Réseau</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Hardware</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Hardware/routeur/">routeur</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Hardware/ssh-switch/">Guide de Configuration et Réinitialisation d'un Switch Cisco</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Problème</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../Cypher/">Cypher</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Renumérotation du switch 2 en switch 1</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#contexte-de-la-situation">Contexte de la situation</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#procedure-de-renumerotation-du-switch-2">Procédure de renumérotation du switch 2</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#verification-apres-redemarrage">Vérification après redémarrage</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#resultat-attendu">Résultat attendu</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Reseau</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../reseau/infra/">Infra</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">My Docs</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Problème</li>
+      <li class="breadcrumb-item active">Renumérotation du switch 2 en switch 1</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="renumerotation-du-switch-2-en-switch-1">Renumérotation du switch 2 en switch 1</h1>
+<h2 id="contexte-de-la-situation">Contexte de la situation</h2>
+<p>Lors de la remise en service d’un switch dans une pile (stack), il peut arriver que certaines configurations précédemment enregistrées soient conservées malgré une remise aux paramètres d’usine.</p>
+<p>Dans le cas présent, le <strong>switch 2</strong> conserve une configuration de provisionnement. Il apparaît alors comme <strong>« Switch 2 Provisionnel »</strong>, alors que l’objectif est de repartir avec une configuration propre et de disposer uniquement des équipements réellement présents dans la pile.</p>
+<p>Pour corriger cette situation, il est nécessaire de <strong>renuméroter le switch 2 en switch 1</strong>, puis de supprimer la configuration de provisionnement restante.</p>
+<h2 id="procedure-de-renumerotation-du-switch-2">Procédure de renumérotation du switch 2</h2>
+<p>Se connecter au switch et passer en mode privilégié :</p>
+<pre><code>enable
+configure terminal
+switch 2 renumber 1
+end
+reload
+</code></pre>
+<h2 id="verification-apres-redemarrage">Vérification après redémarrage</h2>
+<p>Suite au redémarrage du switch vérifier si la modification a bien eu lieu il devrait y avoir écrit :
+    - Switch 1
+    - Switch 2</p>
+<p>Si il y a marquer <strong>« Switch 2 Provisionnel »</strong> alors supprimer la avec ces commandes:</p>
+<pre><code>enable
+configure terminal
+no switch 2 provision
+end
+reload
+</code></pre>
+<h2 id="resultat-attendu">Résultat attendu</h2>
+<p>Après suppression du provisionnement, la configuration doit être nettoyée.</p>
+<p>Le switch doit désormais apparaître uniquement comme :</p>
+<pre><code>Switch 1 Ready
+</code></pre>
+<p>Cette opération permet donc de <strong>réinitialiser la numérotation du switch et de supprimer les anciennes informations</strong> de provisionnement persistantes.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../Cypher/" class="btn btn-neutral float-left" title="Cypher"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../reseau/infra/" class="btn btn-neutral float-right" title="Infra">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../Cypher/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../reseau/infra/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Guide de Configuration et Réinitialisation d'un Switch Cisco - My Docs</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Guide de Configuration et R\u00e9initialisation d\u0027un Switch Cisco";
+        var mkdocs_page_input_path = "Hardware/ssh-switch.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> My Docs
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">📚 Documentation Réseau</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Hardware</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../routeur/">routeur</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Guide de Configuration et Réinitialisation d'un Switch Cisco</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#1-reinitialisation-complete-du-switch">1. Réinitialisation complète du Switch</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#procedure-etape-par-etape">Procédure étape par étape</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#configuration-pas-a-pas">Configuration pas à pas</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#configuration-ssh-compte-utilisateur">Configuration SSH &amp; Compte Utilisateur</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3-configuration-reseau-adresse-ip-de-management">3. Configuration Réseau (Adresse IP de Management)</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Problème</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Probl%C3%A8me/Cypher/">Cypher</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Probl%C3%A8me/Stack/">Renumérotation du switch 2 en switch 1</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Reseau</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../reseau/infra/">Infra</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">My Docs</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Hardware</li>
+      <li class="breadcrumb-item active">Guide de Configuration et Réinitialisation d'un Switch Cisco</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="guide-de-configuration-et-reinitialisation-dun-switch-cisco">Guide de Configuration et Réinitialisation d'un Switch Cisco</h1>
+<p>Ce guide récapitule les procédures essentielles pour la gestion, la réinitialisation et la sécurisation d'un switch Cisco IOS.</p>
+<hr />
+<h2 id="1-reinitialisation-complete-du-switch">1. Réinitialisation complète du Switch</h2>
+<p>Pour remettre un switch à sa configuration d'usine lorsqu'il est bloqué ou configuré précédemment.</p>
+<pre><code>La suppression de `config.text` et `vlan.dat` efface définitivement la configuration existante ainsi que la base de données des VLANs.
+</code></pre>
+<h3 id="procedure-etape-par-etape">Procédure étape par étape</h3>
+<ol>
+<li>Maintenez enfoncé le bouton <strong>MODE</strong> en façade tout en allumant/branchant le switch jusqu'à ce que la LED <code>SYST</code> clignote ou reste fixe en vert/ambre.</li>
+<li>Une fois dans le prompt d'amorçage <code>switch:</code>, saisissez les commandes suivantes :</li>
+</ol>
+<pre><code>switch: flash_init
+switch: del flash:config.text
+switch: del flash:vlan.dat
+switch: reset
+</code></pre>
+<pre><code>=== &quot;Description des commandes&quot;
+`flash_init`= Initialise le système de fichiers mémoire FLASH 
+`del flash:config.text` = Supprime le fichier de configuration de démarrage 
+`del flash:vlan.dat` = Supprime la base de données des VLANs enregistrés 
+`reset` =  Redémarre le switch avec les paramètres d'usine |
+</code></pre>
+<h2 id="configuration-pas-a-pas">Configuration pas à pas</h2>
+<h3 id="configuration-ssh-compte-utilisateur">Configuration SSH &amp; Compte Utilisateur</h3>
+<pre><code>
+1. Nom de l'équipement et Domaine
+conf t
+hostname SW-ACCESS-01
+ip domain-name domaine.local
+
+2. Génération de la clé de chiffrement RSA
+crypto key generate rsa
+# Indiquer la taille de clé souhaitée lors du prompt (ex: 1024 ou 2048)
+
+3. Création de l'utilisateur Administrateur
+username admin privilege 15 secret MonMotDePasseSecurise!
+
+4. Restriction des lignes d'accès VTY au protocole SSH uniquement
+line vty 0 15
+ transport input ssh
+ login local
+ exit
+
+</code></pre>
+<hr />
+<h2 id="3-configuration-reseau-adresse-ip-de-management">3. Configuration Réseau (Adresse IP de Management)</h2>
+<p>Attribution d'une adresse IP d'administration sur une interface VLAN.</p>
+<p>```cisco title="Interface VLAN de Management"
+conf t
+interface vlan 140
+ description VLAN Management
+ ip address 10.140.0.1 255.255.255.0
+ no shutdown
+ exit</p>
+<pre><code>
+ info **Rappel de sous-réseau**
+    Le masque `/24` (`255.255.255.0`) permet d'avoir 254 adresses hôtes utilisables dans le sous-réseau (de `10.140.0.1` à `10.140.0.254`).
+
+---
+
+##  4. Affectation d'un VLAN sur un Port d'Accès
+
+Procédure pour associer un port du switch à un VLAN spécifique en mode `access`.
+
+</code></pre>
+<p>conf t
+interface FastEthernet 0/1
+ switchport mode access
+ switchport access vlan 10
+ no shutdown
+ exit
+```</p>
+<p>Vérification de l'état des VLANs et de l'interface :</p>
+<pre><code>show vlan brief
+show interface FastEthernet 0/1 switchport
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../routeur/" class="btn btn-neutral float-left" title="routeur"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../Probl%C3%A8me/Cypher/" class="btn btn-neutral float-right" title="Cypher">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../routeur/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../Probl%C3%A8me/Cypher/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

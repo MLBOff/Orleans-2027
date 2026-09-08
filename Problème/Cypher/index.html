@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Cypher - My Docs</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Cypher";
+        var mkdocs_page_input_path = "Probl\u00e8me/Cypher.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> My Docs
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">📚 Documentation Réseau</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Hardware</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Hardware/routeur/">routeur</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Hardware/ssh-switch/">Guide de Configuration et Réinitialisation d'un Switch Cisco</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Problème</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Cypher</a>
+    <ul class="current">
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Stack/">Renumérotation du switch 2 en switch 1</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Reseau</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../reseau/infra/">Infra</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">My Docs</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Problème</li>
+      <li class="breadcrumb-item active">Cypher</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h2 id="contexte">Contexte</h2>
+<p>Dans un environnement StackWise, chaque switch possède un niveau de priorité. Ce niveau permet de déterminer quel switch doit avoir le rôle principal dans la pile.</p>
+<h2 id="attribution-de-la-priorite">Attribution de la priorité</h2>
+<p>En mode de configuration, attribuer la priorité maximale <code>15</code> au switch 1 :</p>
+<pre><code class="language-text">switch(config)# switch 1 priority 15
+</code></pre>
+<p>Vérifier le niveau de priorité avec :</p>
+<pre><code class="language-text">switch# show switch
+</code></pre>
+<p>Vérifier le numéro <code>15</code> dans la colonne <strong>Priority</strong> du switch 1.</p>
+<h2 id="explication">Explication</h2>
+<p>Les anciens équipements Cisco peuvent utiliser des algorithmes SSH qui ne sont plus activés par défaut dans les versions récentes d'OpenSSH.</p>
+<p>Dans ce cas, il est possible de créer une configuration SSH spécifique afin d'autoriser les anciens algorithmes nécessaires à la connexion au switch.</p>
+<h2 id="creation-du-script-pour-les-anciens-algorithmes-ssh">Création du script pour les anciens algorithmes SSH</h2>
+<p>Création du fichier de configuration dans <code>~/.ssh/</code> :</p>
+<pre><code class="language-bash">nano ~/.ssh/config
+</code></pre>
+<p>Ajouter le script :</p>
+<pre><code class="language-text">Host switch
+    HostName 10.140.0.1
+    User NAME
+    KexAlgorithms +diffie-hellman-group1-sha1
+    HostKeyAlgorithms +ssh-rsa
+    Ciphers +aes128-cbc
+</code></pre>
+<p>Attribution des permissions au fichier :</p>
+<pre><code class="language-bash">chmod 600 ~/.ssh/config
+</code></pre>
+<p>Pour se connecter au switch en SSH :</p>
+<pre><code class="language-bash">ssh ****(host)
+</code></pre>
+<p>Grace a ce script l'utilisation de ssh sur le routeur est possible.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../Hardware/ssh-switch/" class="btn btn-neutral float-left" title="Guide de Configuration et Réinitialisation d'un Switch Cisco"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../Stack/" class="btn btn-neutral float-right" title="Renumérotation du switch 2 en switch 1">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../../Hardware/ssh-switch/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../Stack/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
