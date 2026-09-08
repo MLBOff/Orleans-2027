@@ -13,7 +13,6 @@ Pour corriger cette situation, il est nécessaire de **renuméroter le switch 2 
 Se connecter au switch et passer en mode privilégié :
 
 ```
-text
 enable
 configure terminal
 switch 2 renumber 1
@@ -30,7 +29,6 @@ Suite au redémarrage du switch vérifier si la modification a bien eu lieu il d
 Si il y a marquer **« Switch 2 Provisionnel »** alors supprimer la avec ces commandes:
 
 ```
-text
 enable
 configure terminal
 no switch 2 provision
@@ -38,7 +36,7 @@ end
 reload
 ```
 
-## Résultat attndu
+## Résultat attendu
 
 Après suppression du provisionnement, la configuration doit être nettoyée.
 

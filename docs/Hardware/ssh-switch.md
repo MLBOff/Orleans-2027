@@ -31,31 +31,35 @@ switch: reset
 ```
 
     
-### Configuration pas à pas
+## Configuration pas à pas
 
-```cisco title="Configuration SSH & Compte Utilisateur"
-!-- 1. Nom de l'équipement et Domaine
+### Configuration SSH & Compte Utilisateur
+
+```
+
+1. Nom de l'équipement et Domaine
 conf t
 hostname SW-ACCESS-01
 ip domain-name domaine.local
 
-!-- 2. Génération de la clé de chiffrement RSA
+2. Génération de la clé de chiffrement RSA
 crypto key generate rsa
 # Indiquer la taille de clé souhaitée lors du prompt (ex: 1024 ou 2048)
 
-!-- 3. Création de l'utilisateur Administrateur
+3. Création de l'utilisateur Administrateur
 username admin privilege 15 secret MonMotDePasseSecurise!
 
-!-- 4. Restriction des lignes d'accès VTY au protocole SSH uniquement
+4. Restriction des lignes d'accès VTY au protocole SSH uniquement
 line vty 0 15
  transport input ssh
  login local
  exit
+
 ```
 
 ---
 
-## 🌐 3. Configuration Réseau (Adresse IP de Management)
+## 3. Configuration Réseau (Adresse IP de Management)
 
 Attribution d'une adresse IP d'administration sur une interface VLAN.
 
@@ -63,21 +67,21 @@ Attribution d'une adresse IP d'administration sur une interface VLAN.
 conf t
 interface vlan 140
  description VLAN Management
- ip address 10.140.0.1 255.255.255.128
+ ip address 10.140.0.1 255.255.255.0
  no shutdown
  exit
 ```
 
-!!! info "Rappel de sous-réseau"
-    Le masque `/25` (`255.255.255.128`) permet d'avoir 126 adresses hôtes utilisables dans le sous-réseau (de `10.140.0.1` à `10.140.0.126`).
+ info **Rappel de sous-réseau**
+    Le masque `/24` (`255.255.255.0`) permet d'avoir 254 adresses hôtes utilisables dans le sous-réseau (de `10.140.0.1` à `10.140.0.254`).
 
 ---
 
-## 🔌 4. Affectation d'un VLAN sur un Port d'Accès
+##  4. Affectation d'un VLAN sur un Port d'Accès
 
 Procédure pour associer un port du switch à un VLAN spécifique en mode `access`.
 
-```cisco title="Configuration Interface d'Accès"
+```
 conf t
 interface FastEthernet 0/1
  switchport mode access
@@ -86,10 +90,9 @@ interface FastEthernet 0/1
  exit
 ```
 
-=== "Vérification"
-    Pour vérifier l'état des VLANs et de l'interface :
+ Vérification de l'état des VLANs et de l'interface :
     
-    ```cisco
+    
     show vlan brief
     show interface FastEthernet 0/1 switchport
-    ```
+    
