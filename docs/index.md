@@ -1,7 +1,7 @@
 
 # 📚 Documentation Réseau
 
-Bienvenue dans ma documentation sur les réseaux Cisco.
+**Bienvenue dans ma documentation sur mon projet.**
 
 ## 📖 Sommaire
 
@@ -14,8 +14,6 @@ Bienvenue dans ma documentation sur les réseaux Cisco.
     - [INFRA](reseau/infra.md)
     - [ADRESSAGE-IP](reseau/adressage-ip)
     
+- [Problème](Problème/index.md)
+    - [Stack](Problème/Stack.md)
 
--[Problème](Problème/index.md)
-    -[Stack](Problème/Stack.md)
-
-=======
