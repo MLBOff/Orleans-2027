@@ -4,7 +4,7 @@ Ce guide récapitule les procédures essentielles pour la gestion, la réinitial
 
 ---
 
-## 🔄 1. Réinitialisation complète du Switch
+##  1. Réinitialisation complète du Switch
 
 Pour remettre un switch à sa configuration d'usine lorsqu'il est bloqué ou configuré précédemment.
 
