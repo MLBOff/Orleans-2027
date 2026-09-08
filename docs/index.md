@@ -14,4 +14,8 @@ Bienvenue dans ma documentation sur les réseaux Cisco.
     - [INFRA](reseau/infra.md)
     - [ADRESSAGE-IP](reseau/adressage-ip)
     
+
+-[Problème](Problème/index.md)
+    -[Stack.md](Problème/Stack.md)
+
 =======
