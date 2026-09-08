@@ -1,21 +1,17 @@
-<<<<<<< HEAD
-## Remarche zebi
+
+# 📚 Documentation Réseau
+
+Bienvenue dans ma documentation sur les réseaux Cisco.
+
+## 📖 Sommaire
+
+- [Hardware](Hardware/index.md)
+    - [Switch](Hardware/switch.md)
+    - [Routeur](Hardware/routeur.md)
+
+- [Réseau](reseau/index.md)
+    - [VLAN](reseau/vlan.md)
+    - [INFRA](reseau/infra.md)
+    - [ADRESSAGE-IP](reseau/adressage-ip)
+    
 =======
-# Orléans 2027
-
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
-
-## Commands
-
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
-
-## Project layout
-
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
->>>>>>> 719d6ef (test)
