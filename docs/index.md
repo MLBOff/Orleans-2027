@@ -6,7 +6,7 @@ Bienvenue dans ma documentation sur les réseaux Cisco.
 ## 📖 Sommaire
 
 - [Hardware](Hardware/index.md)
-    - [Switch](Hardware/Config-ssh.md)
+    - [Config SSH sur un Switch](Hardware/ssh-switch.md)
     - [Routeur](Hardware/routeur.md)
 
 - [Réseau](reseau/index.md)
@@ -16,6 +16,6 @@ Bienvenue dans ma documentation sur les réseaux Cisco.
     
 
 -[Problème](Problème/index.md)
-    -[Stack.md](Problème/Stack.md)
+    -[Stack](Problème/Stack.md)
 
 =======
