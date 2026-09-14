@@ -1,22 +1,10 @@
 ## Contexte 
 
-Dans un environnement StackWise, chaque switch possède un niveau de priorité. Ce niveau permet de déterminer quel switch doit avoir le rôle principal dans la pile.
+Dans un environnement Cisco StackWise, les différents commutateurs constituant la pile doivent normalement disposer d'un niveau de sécurité et d'une configuration homogènes, notamment concernant les paramètres d'accès SSH.
 
-## Attribution de la priorité
+Cependant, certains équipements Cisco anciens utilisent des algorithmes cryptographiques SSH obsolètes. Ces algorithmes, considérés aujourd'hui comme insuffisamment sécurisés, sont désactivés par défaut dans les versions récentes d'OpenSSH.
 
-En mode de configuration, attribuer la priorité maximale `15` au switch 1 :
-
-```text
-switch(config)# switch 1 priority 15
-```
-
-Vérifier le niveau de priorité avec :
-
-```text
-switch# show switch
-```
-
-Vérifier le numéro `15` dans la colonne **Priority** du switch 1.
+Par conséquent, une tentative de connexion SSH classique peut échouer, même si le service SSH est correctement configuré sur le switch. Le client OpenSSH refuse alors les algorithmes proposés par l'équipement Cisco.
 ## Explication 
 
 Les anciens équipements Cisco peuvent utiliser des algorithmes SSH qui ne sont plus activés par défaut dans les versions récentes d'OpenSSH.

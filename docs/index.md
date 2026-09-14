@@ -16,5 +16,4 @@
     
 - [Problème](Problème/index.md)
     - [Stack](Problème/Stack.md)
-
-    - [Cyper](Problème/cypher.md)
+    - [Cypher](Problème/Cypher.md)

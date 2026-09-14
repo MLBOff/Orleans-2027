@@ -23,38 +23,42 @@ switch: reset
 ```
 
 ```
-=== "Description des commandes"
-`flash_init`= Initialise le système de fichiers mémoire FLASH 
-`del flash:config.text` = Supprime le fichier de configuration de démarrage 
-`del flash:vlan.dat` = Supprime la base de données des VLANs enregistrés 
-`reset` =  Redémarre le switch avec les paramètres d'usine |
+Description des commandes
+
+flash_init = Initialise le système de fichiers mémoire FLASH 
+del flash:config.text = Supprime le fichier de configuration de démarrage 
+del flash:vlan.dat = Supprime la base de données des VLANs enregistrés 
+reset =  Redémarre le switch avec les paramètres d'usine 
 ```
 
     
-## Configuration pas à pas
+## 2. Configuration pas à pas
 
 ### Configuration SSH & Compte Utilisateur
 
-```
 
 1. Nom de l'équipement et Domaine
+```
 conf t
 hostname SW-ACCESS-01
 ip domain-name domaine.local
+```
 
 2. Génération de la clé de chiffrement RSA
+```
 crypto key generate rsa
 # Indiquer la taille de clé souhaitée lors du prompt (ex: 1024 ou 2048)
-
+```
 3. Création de l'utilisateur Administrateur
+```
 username admin privilege 15 secret MonMotDePasseSecurise!
-
+```
 4. Restriction des lignes d'accès VTY au protocole SSH uniquement
+```
 line vty 0 15
  transport input ssh
  login local
  exit
-
 ```
 
 ---
