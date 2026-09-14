@@ -99,4 +99,5 @@ interface FastEthernet 0/1
     
     show vlan brief
     show interface FastEthernet 0/1 switchport
-    
+
+
