@@ -1,4 +1,4 @@
-# Renumérotation du switch 2 en switch 1
+# Numérotation du switch 2 en switch 1
 
 ## Contexte de la situation
 
