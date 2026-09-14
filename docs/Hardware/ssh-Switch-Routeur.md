@@ -37,23 +37,23 @@ reset =  Redémarre le switch avec les paramètres d'usine
 ### Configuration SSH & Compte Utilisateur
 
 
-1. Nom de l'équipement et Domaine
+I. Nom de l'équipement et Domaine
 ```
 conf t
 hostname SW-ACCESS-01
 ip domain-name domaine.local
 ```
 
-2. Génération de la clé de chiffrement RSA
+II. Génération de la clé de chiffrement RSA
 ```
 crypto key generate rsa
 # Indiquer la taille de clé souhaitée lors du prompt (ex: 1024 ou 2048)
 ```
-3. Création de l'utilisateur Administrateur
+III. Création de l'utilisateur Administrateur
 ```
 username admin privilege 15 secret MonMotDePasseSecurise!
 ```
-4. Restriction des lignes d'accès VTY au protocole SSH uniquement
+IV. Restriction des lignes d'accès VTY au protocole SSH uniquement
 ```
 line vty 0 15
  transport input ssh
