@@ -6,7 +6,7 @@
 ## 📖 Sommaire
 
 - [Hardware](Hardware/index.md)
-    - [Config SSH sur un Switch/Routeur](Hardware/ssh-switch/routeur.md)
+    - [Config SSH sur un Switch-Routeur](Hardware/ssh-switch-routeur.md)
     - [Configuration d'un Routeur](Hardware/routeur.md)
     - [Configuration d'un Switch](Hardware/switch.md)
 
@@ -18,4 +18,3 @@
 - [Problème](Problème/index.md)
     - [Stack](Problème/Stack.md)
     - [Cypher](Problème/Cypher.md)
-
