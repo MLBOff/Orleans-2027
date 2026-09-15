@@ -1,0 +1,103 @@
+# Guide de Configuration et Réinitialisation d'un Switch Cisco
+
+Ce guide récapitule les procédures essentielles pour la gestion, la réinitialisation et la sécurisation d'un switch Cisco IOS.
+
+---
+
+##  I. Réinitialisation complète du Switch
+
+Pour remettre un switch à sa configuration d'usine lorsqu'il est bloqué ou configuré précédemment.
+
+    La suppression de `config.text` et `vlan.dat` efface définitivement la configuration existante ainsi que la base de données des VLANs.
+
+### Procédure étape par étape
+
+1. Maintenez enfoncé le bouton **MODE** en façade tout en allumant/branchant le switch jusqu'à ce que la LED `SYST` clignote ou reste fixe en vert/ambre.
+2. Une fois dans le prompt d'amorçage `switch:`, saisissez les commandes suivantes :
+
+```
+switch: flash_init
+switch: del flash:config.text
+switch: del flash:vlan.dat
+switch: reset
+```
+
+```
+Description des commandes
+
+flash_init = Initialise le système de fichiers mémoire FLASH 
+del flash:config.text = Supprime le fichier de configuration de démarrage 
+del flash:vlan.dat = Supprime la base de données des VLANs enregistrés 
+reset =  Redémarre le switch avec les paramètres d'usine 
+```
+
+    
+## II. Configuration pas à pas
+
+### Configuration SSH & Compte Utilisateur
+
+
+I. Nom de l'équipement et Domaine
+```
+conf t
+hostname SW-ACCESS-01
+ip domain-name domaine.local
+```
+
+II. Génération de la clé de chiffrement RSA
+```
+crypto key generate rsa
+# Indiquer la taille de clé souhaitée lors du prompt (ex: 1024 ou 2048)
+```
+III. Création de l'utilisateur Administrateur
+```
+username admin privilege 15 secret MonMotDePasseSecurise!
+```
+IV. Restriction des lignes d'accès VTY au protocole SSH uniquement
+```
+line vty 0 15
+ transport input ssh
+ login local
+ exit
+```
+
+---
+
+## III. Configuration Réseau (Adresse IP de Management)
+
+Attribution d'une adresse IP d'administration sur une interface VLAN.
+
+```
+conf t
+interface vlan 140
+ description VLAN Management
+ ip address 10.140.0.1 255.255.255.0
+ no shutdown
+ exit
+```
+
+ info **Rappel de sous-réseau**
+    Le masque `/24` (`255.255.255.0`) permet d'avoir 254 adresses hôtes utilisables dans le sous-réseau (de `10.140.0.1` à `10.140.0.254`).
+
+---
+
+##  IV. Affectation d'un VLAN sur un Port d'Accès
+
+Procédure pour associer un port du switch à un VLAN spécifique en mode `access`.
+
+```
+conf t
+interface FastEthernet 0/1
+ switchport mode access
+ switchport access vlan 10
+ no shutdown
+ exit
+```
+
+ Vérification de l'état des VLANs et de l'interface :
+    
+    
+    show vlan brief
+    show interface FastEthernet 0/1 switchport
+
+
