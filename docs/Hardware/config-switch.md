@@ -2,7 +2,7 @@
 
 ## Configuration d'un port trunk
 
-Pour configurer un port en **trunk** et autoriser les VLAN `140` et `142` :
+Pour configurer un port en **trunk** et autoriser les VLAN `140` et `149` :
 
 ```bash
 interface FastEthernet1/0/1
