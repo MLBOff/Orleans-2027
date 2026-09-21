@@ -87,3 +87,23 @@ Après avoir mit le script la connexion sera possible avec le nom mit en "host"
 ```
 ssh ****(host)
 ```
+### Encapsulation port
+Sur le port LAN il est possible de mettre plusieurs sous interface pour les VLAN
+
+Pour mettre une interface en sous interface :
+```
+conf t
+interface GigabitEthernet0/0.10
+encapsulation dot1q 10
+ip address 192.168.10.1 255.255.255.0
+end
+```
+
+### Explication
+
+| Commande                               | Description                           |
+| -------------------------------------- | ------------------------------------- |
+| `conf t`                       | Permet de se mettre en mode configuration             |
+| `encapsulation dot1q 10`         | Active l'encapsulation 802.1Q et associe la sous-interface au VLAN 10             |
+---
+
