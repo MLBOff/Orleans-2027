@@ -105,4 +105,5 @@ end
 | -------------------------------------- | ------------------------------------- |
 | `conf t`                       | Permet de se mettre en mode configuration             |
 | `encapsulation dot1q 10`         | Active l'encapsulation 802.1Q et associe la sous-interface au VLAN 10             |
+
 ---
