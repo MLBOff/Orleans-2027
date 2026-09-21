@@ -18,5 +18,5 @@
     - [Stack](Problème/Stack.md)
     - [Cypher](Problème/Cypher.md)
     - [Spanning-tree](Problème/Spanning-tree.md)
-- [Services](Mes Services/index.md)
-    - [DHCP](Mes Services/DHCP.md)
+- [Services](Services/index.md)
+    - [DHCP](Services/DHCP.md)
