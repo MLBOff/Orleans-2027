@@ -23,8 +23,8 @@ VLAN10              Desg BKN*19        128.7    P2p *TYPE_Inc
 | **Sts**      | `BKN`      | **Broken** : STP considère le port comme problématique |
 | **Cost**     | `19`       | Coût STP du lien                                       |
 | **Prio.Nbr** | `128.7`    | Priorité du port = 128, numéro de port = 7             |
-| **Type**     | `P2p`      | Le lien est considéré comme **point-à-point**          |
-| ***TYPE_Inc**  | `TYPE_Inc` | Type de port STP incohérent                            |
+| **Type**     | `P2p *TYPE_Inc`      | Le lien est considéré comme **point-à-point** et Type de port STP incohérent           |
+
 
 
 
