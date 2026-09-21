@@ -23,9 +23,18 @@ Ajouter le script :
 
 ```text
 Host switch
-    HostName 10.140.0.1
+    HostName 'ip'
     User NAME
     KexAlgorithms +diffie-hellman-group1-sha1
+    HostKeyAlgorithms +ssh-rsa
+    Ciphers +aes128-cbc
+```
+Script pour le routeur :
+```
+Host routeur
+    HostName 'ip'
+    User NAME
+    KexAlgorithms +diffie-hellman-group14-sha1
     HostKeyAlgorithms +ssh-rsa
     Ciphers +aes128-cbc
 ```
