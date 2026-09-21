@@ -1,4 +1,6 @@
-### Contexte
+# Spanning-tree
+
+## Contexte
 Il est possible que s'il y a eu une boucle sur un port, spanning-tree va bloquer se port et restera down en physique mais UP en faisant un ```show interface``` 
 
 
