@@ -67,17 +67,17 @@ interface GigabitEthernet0/0
 ```
 
 
- ### Test connexion SSH
+### Test connexion SSH
 
- Une fois l'utilisateur crée et une IP attribuée sur une interface du routeur dans le même réseau. On essaye de se connecter en SSH
+Une fois l'utilisateur crée et une IP attribuée sur une interface du routeur dans le même réseau. On essaye de se connecter en SSH
  
- ```
- ssh NOM@ip 
- ```
+```
+ssh NOM@ip 
+```
 
- Si en essayant de vous connecter la reponse est : 
- ```
- Unable to negotiate with 'ip' port 22: no matching key exchange method found. Their offer: diffie-hellman-group1-sha1
+Si en essayant de vous connecter la reponse est : 
+```
+Unable to negotiate with 'ip' port 22: no matching key exchange method found. Their offer: diffie-hellman-group1-sha1
 ```
 
 voir [Cypher](Problème/Cypher.md)
