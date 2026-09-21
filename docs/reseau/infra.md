@@ -8,4 +8,4 @@
 
 
 ## Schéma switch
-![switch](../assets/schema-switch.png)
+![switch](../assets/schéma-switch.png)
