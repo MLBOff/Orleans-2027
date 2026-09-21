@@ -1,6 +1,6 @@
 ## Schéma reseau
 
-![mon schéma](../assets/schema-reseau.png)
+![mon schéma](../assets/shema-reseaux.png)
 
 
 ## Schéma mana
