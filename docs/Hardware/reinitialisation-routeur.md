@@ -1,4 +1,4 @@
-# Réinitialisation d'un routeur Cisco 1921 avec `Ctrl` + `Pause`
+# Réinitialisation d'un routeur Cisco 1921 
 
 ## Objectif
 
