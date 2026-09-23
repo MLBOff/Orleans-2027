@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://mlboff.github.io/Orleans-2027/Hardware/config-switch/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Configuration d'un switch Cisco - My Docs</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Configuration d\u0027un switch Cisco";
+        var mkdocs_page_input_path = "Hardware/config-switch.md";
+        var mkdocs_page_url = "/Orleans-2027/Hardware/config-switch/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> My Docs
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">📚 Documentation Réseau</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Hardware</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../config-routeur/">Configuration d'un routeur</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Configuration d'un switch Cisco</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#configuration-dun-port-trunk">Configuration d'un port trunk</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#explication">Explication</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#configuration-dun-port-dans-un-vlan">Configuration d'un port dans un VLAN</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#explication_1">Explication</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#configuration-dune-interface-vlan">Configuration d'une interface VLAN</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#explication_2">Explication</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#configuration-dune-route-statique">Configuration d'une route statique</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#explication_3">Explication</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#route-par-defaut">Route par défaut</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#explication_4">Explication</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#creation-dun-utilisateur-pour-ssh">Création d'un utilisateur pour SSH</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#explication_5">Explication</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#configuration-de-ssh">Configuration de SSH</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#explication_6">Explication</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#verification-de-la-configuration">Vérification de la configuration</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#verifier-les-vlan">Vérifier les VLAN</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#verifier-les-trunks">Vérifier les trunks</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#verifier-une-interface">Vérifier une interface</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#verifier-les-interfaces-vlan">Vérifier les interfaces VLAN</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#verifier-la-table-de-routage">Vérifier la table de routage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#verifier-ssh">Vérifier SSH</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#verifier-les-utilisateurs">Vérifier les utilisateurs</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#sauvegarde-de-la-configuration">Sauvegarde de la configuration</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#recapitulatif">Récapitulatif</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../reinitialisation-routeur/">Réinitialisation d'un routeur Cisco 1921</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../reinitialisation-switch/">Démarche reinitalisation Switch Cisco Catalyst 3750</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Mes Services</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Mes%20Services/AD-DNS/">Configuration</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Mes%20Services/DHCP/">Configuration d'un DHCP</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Problème</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Probl%C3%A8me/Cypher/">Cypher</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Probl%C3%A8me/Spanning-tree/">Spanning-tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Probl%C3%A8me/Stack/">Modification du stack</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Reseau</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../reseau/infra/">Infra</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">My Docs</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Hardware</li>
+      <li class="breadcrumb-item active">Configuration d'un switch Cisco</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="configuration-dun-switch-cisco">Configuration d'un switch Cisco</h1>
+<h2 id="configuration-dun-port-trunk">Configuration d'un port trunk</h2>
+<p>Pour configurer un port en <strong>trunk</strong> et autoriser les VLAN <code>140</code> et <code>149</code> :</p>
+<pre><code class="language-bash">interface FastEthernet1/0/1
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 140,142
+ switchport mode trunk
+</code></pre>
+<h3 id="explication">Explication</h3>
+<table>
+<thead>
+<tr>
+<th>Commande</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>interface FastEthernet1/0/1</code></td>
+<td>Sélectionne l'interface à configurer</td>
+</tr>
+<tr>
+<td><code>switchport trunk encapsulation dot1q</code></td>
+<td>Utilise l'encapsulation <strong>802.1Q</strong></td>
+</tr>
+<tr>
+<td><code>switchport trunk allowed vlan 140,142</code></td>
+<td>Autorise les VLAN 140 et 142 sur le trunk</td>
+</tr>
+<tr>
+<td><code>switchport mode trunk</code></td>
+<td>Configure le port en mode trunk</td>
+</tr>
+</tbody>
+</table>
+<p>Un port <strong>trunk</strong> permet de transporter plusieurs VLAN sur une même liaison, par exemple entre deux switches ou entre un switch et un routeur.</p>
+<hr />
+<h2 id="configuration-dun-port-dans-un-vlan">Configuration d'un port dans un VLAN</h2>
+<p>Pour placer un port dans un VLAN spécifique, il faut utiliser le mode <strong>access</strong>.</p>
+<p>Par exemple, pour placer le port <code>FastEthernet1/0/1</code> dans le VLAN <code>140</code> :</p>
+<pre><code class="language-bash">interface FastEthernet1/0/1
+ switchport mode access
+ switchport access vlan 140
+</code></pre>
+<h3 id="explication_1">Explication</h3>
+<table>
+<thead>
+<tr>
+<th>Commande</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>interface FastEthernet1/0/1</code></td>
+<td>Sélectionne l'interface à configurer</td>
+</tr>
+<tr>
+<td><code>switchport mode access</code></td>
+<td>Configure le port en mode access</td>
+</tr>
+<tr>
+<td><code>switchport access vlan 140</code></td>
+<td>Affecte le port au VLAN 140</td>
+</tr>
+</tbody>
+</table>
+<p>Un port <strong>access</strong> appartient généralement à un seul VLAN. Il est utilisé pour connecter des équipements tels que des PC, imprimantes ou autres périphériques réseau.</p>
+<hr />
+<h2 id="configuration-dune-interface-vlan">Configuration d'une interface VLAN</h2>
+<p>Une interface VLAN, également appelée <strong>SVI (Switch Virtual Interface)</strong>, permet d'attribuer une adresse IP au switch dans un VLAN.</p>
+<p>Exemple avec le VLAN 149 :</p>
+<pre><code class="language-bash">interface Vlan149
+ ip address 192.168.149.254 255.255.255.0
+</code></pre>
+<h3 id="explication_2">Explication</h3>
+<table>
+<thead>
+<tr>
+<th>Commande</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>interface Vlan149</code></td>
+<td>Sélectionne l'interface virtuelle du VLAN 149</td>
+</tr>
+<tr>
+<td><code>ip address 192.168.149.254 255.255.255.0</code></td>
+<td>Attribue l'adresse IP <code>192.168.149.254/24</code> au switch</td>
+</tr>
+</tbody>
+</table>
+<p>Le réseau correspondant est :</p>
+<pre><code class="language-text">Réseau      : 192.168.149.0/24
+Adresse IP  : 192.168.149.254
+Masque      : 255.255.255.0
+</code></pre>
+<p>Cette adresse peut notamment être utilisée comme <strong>passerelle par défaut</strong> pour les équipements présents dans le VLAN 149.</p>
+<p>Par exemple :</p>
+<pre><code>PC
+IP          : 192.168.149.10
+Masque      : 255.255.255.0
+Passerelle  : 192.168.149.254
+</code></pre>
+<p>L'interface <code>Vlan149</code> doit être active pour pouvoir être utilisée. Le VLAN 149 doit également exister sur le switch.</p>
+<hr />
+<h2 id="configuration-dune-route-statique">Configuration d'une route statique</h2>
+<p>La commande <code>ip route</code> permet de configurer une <strong>route statique</strong> vers un autre réseau.</p>
+<p>Exemple :</p>
+<pre><code class="language-bash">ip route 192.168.140.0 255.255.255.0 192.168.149.1
+</code></pre>
+<p>Cette configuration signifie :</p>
+<blockquote>
+<p>Pour atteindre le réseau <code>192.168.140.0/24</code>, le switch doit envoyer les paquets vers <code>192.168.149.1</code>.</p>
+</blockquote>
+<h3 id="explication_3">Explication</h3>
+<table>
+<thead>
+<tr>
+<th>Élément</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ip route</code></td>
+<td>Crée une route statique</td>
+</tr>
+<tr>
+<td><code>192.168.140.0</code></td>
+<td>Réseau de destination</td>
+</tr>
+<tr>
+<td><code>255.255.255.0</code></td>
+<td>Masque du réseau de destination</td>
+</tr>
+<tr>
+<td><code>192.168.149.1</code></td>
+<td>Adresse IP du prochain équipement (<em>next-hop</em>)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="route-par-defaut">Route par défaut</h2>
+<p>Une route par défaut permet d'indiquer au switch où envoyer les paquets lorsqu'il ne possède aucune route spécifique vers leur destination.</p>
+<pre><code class="language-bash">ip route 0.0.0.0 0.0.0.0 192.168.149.1
+</code></pre>
+<p>Cette commande signifie :</p>
+<blockquote>
+<p>Si aucune route connue ne correspond à la destination, envoyer le trafic vers <code>192.168.149.1</code>.</p>
+</blockquote>
+<h3 id="explication_4">Explication</h3>
+<table>
+<thead>
+<tr>
+<th>Élément</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0.0.0.0</code></td>
+<td>Toutes les destinations</td>
+</tr>
+<tr>
+<td><code>0.0.0.0</code></td>
+<td>Tous les masques</td>
+</tr>
+<tr>
+<td><code>192.168.149.1</code></td>
+<td>Passerelle / prochain saut</td>
+</tr>
+</tbody>
+</table>
+<p>La route <code>0.0.0.0/0</code> est appelée <strong>route par défaut</strong>.</p>
+<hr />
+<h2 id="creation-dun-utilisateur-pour-ssh">Création d'un utilisateur pour SSH</h2>
+<p>Pour créer un utilisateur local permettant de se connecter au switch en SSH :</p>
+<pre><code class="language-bash">username NOM privilege 15 secret MDP
+</code></pre>
+<h3 id="explication_5">Explication</h3>
+<table>
+<thead>
+<tr>
+<th>Élément</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>username NOM</code></td>
+<td>Crée l'utilisateur</td>
+</tr>
+<tr>
+<td><code>privilege 15</code></td>
+<td>Attribue le niveau de privilège maximal</td>
+</tr>
+<tr>
+<td><code>secret MDP</code></td>
+<td>Définit le mot de passe de l'utilisateur</td>
+</tr>
+</tbody>
+</table>
+<p>Il est recommandé d'utiliser <code>secret</code> plutôt que <code>password</code>, car le mot de passe est stocké de manière plus sécurisée dans la configuration.</p>
+<hr />
+<h2 id="configuration-de-ssh">Configuration de SSH</h2>
+<p>Une configuration SSH complète peut être réalisée avec les commandes suivantes :</p>
+<pre><code class="language-bash">hostname SW-01
+
+ip domain-name exemple.local
+
+username NOM privilege 15 secret MDP
+
+crypto key generate rsa modulus 2048
+
+ip ssh version 2
+
+line vty 0 15
+ login local
+ transport input ssh
+</code></pre>
+<h3 id="explication_6">Explication</h3>
+<table>
+<thead>
+<tr>
+<th>Commande</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>hostname SW-01</code></td>
+<td>Définit le nom du switch</td>
+</tr>
+<tr>
+<td><code>ip domain-name exemple.local</code></td>
+<td>Définit le nom de domaine</td>
+</tr>
+<tr>
+<td><code>username NOM privilege 15 secret MDP</code></td>
+<td>Crée l'utilisateur local</td>
+</tr>
+<tr>
+<td><code>crypto key generate rsa modulus 2048</code></td>
+<td>Génère les clés RSA nécessaires à SSH</td>
+</tr>
+<tr>
+<td><code>ip ssh version 2</code></td>
+<td>Active SSH version 2</td>
+</tr>
+<tr>
+<td><code>line vty 0 15</code></td>
+<td>Sélectionne les lignes VTY</td>
+</tr>
+<tr>
+<td><code>login local</code></td>
+<td>Utilise les utilisateurs locaux</td>
+</tr>
+<tr>
+<td><code>transport input ssh</code></td>
+<td>Autorise les connexions SSH</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="verification-de-la-configuration">Vérification de la configuration</h2>
+<h3 id="verifier-les-vlan">Vérifier les VLAN</h3>
+<pre><code class="language-bash">show vlan brief
+</code></pre>
+<h3 id="verifier-les-trunks">Vérifier les trunks</h3>
+<pre><code class="language-bash">show interfaces trunk
+</code></pre>
+<h3 id="verifier-une-interface">Vérifier une interface</h3>
+<pre><code class="language-bash">show running-config interface FastEthernet1/0/1
+</code></pre>
+<h3 id="verifier-les-interfaces-vlan">Vérifier les interfaces VLAN</h3>
+<pre><code class="language-bash">show ip interface brief
+</code></pre>
+<p>Cette commande permet notamment de vérifier l'état de <code>Vlan149</code> et son adresse IP.</p>
+<h3 id="verifier-la-table-de-routage">Vérifier la table de routage</h3>
+<pre><code class="language-bash">show ip route
+</code></pre>
+<p>Cette commande permet de voir les réseaux directement connectés, les routes statiques et la route par défaut.</p>
+<h3 id="verifier-ssh">Vérifier SSH</h3>
+<pre><code class="language-bash">show ip ssh
+</code></pre>
+<h3 id="verifier-les-utilisateurs">Vérifier les utilisateurs</h3>
+<pre><code class="language-bash">show running-config | include username
+</code></pre>
+<hr />
+<h2 id="sauvegarde-de-la-configuration">Sauvegarde de la configuration</h2>
+<p>Après avoir terminé la configuration, sauvegarder la configuration courante :</p>
+<pre><code class="language-bash">copy running-config startup-config
+</code></pre>
+<p>ou :</p>
+<pre><code class="language-bash">write memory
+</code></pre>
+<p>La configuration présente dans <code>running-config</code> est active immédiatement, mais elle sera perdue après un redémarrage si elle n'est pas sauvegardée dans <code>startup-config</code>.</p>
+<hr />
+<h2 id="recapitulatif">Récapitulatif</h2>
+<table>
+<thead>
+<tr>
+<th>Élément</th>
+<th>Fonction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Trunk</strong></td>
+<td>Transporte plusieurs VLAN</td>
+</tr>
+<tr>
+<td><strong>Access</strong></td>
+<td>Connecte un équipement à un VLAN</td>
+</tr>
+<tr>
+<td><strong>Interface VLAN / SVI</strong></td>
+<td>Donne une adresse IP au switch dans un VLAN</td>
+</tr>
+<tr>
+<td><strong><code>ip route</code></strong></td>
+<td>Ajoute une route vers un réseau</td>
+</tr>
+<tr>
+<td><strong>Route par défaut</strong></td>
+<td>Définit la passerelle utilisée lorsque aucune route spécifique n'existe</td>
+</tr>
+<tr>
+<td><strong>Utilisateur SSH</strong></td>
+<td>Permet l'authentification sur le switch</td>
+</tr>
+<tr>
+<td><strong>SSH</strong></td>
+<td>Permet l'administration distante sécurisée</td>
+</tr>
+<tr>
+<td><strong><code>show ip route</code></strong></td>
+<td>Affiche la table de routage</td>
+</tr>
+<tr>
+<td><strong><code>copy running-config startup-config</code></strong></td>
+<td>Sauvegarde la configuration</td>
+</tr>
+</tbody>
+</table>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../config-routeur/" class="btn btn-neutral float-left" title="Configuration d'un routeur"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../reinitialisation-routeur/" class="btn btn-neutral float-right" title="Réinitialisation d'un routeur Cisco 1921">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../config-routeur/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../reinitialisation-routeur/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

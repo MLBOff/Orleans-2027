@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://mlboff.github.io/Orleans-2027/Hardware/config-routeur/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Configuration d'un routeur - My Docs</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Configuration d\u0027un routeur";
+        var mkdocs_page_input_path = "Hardware/config-routeur.md";
+        var mkdocs_page_url = "/Orleans-2027/Hardware/config-routeur/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> My Docs
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">📚 Documentation Réseau</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Hardware</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Configuration d'un routeur</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#creation-dun-utilisateur-pour-ssh">Création d'un utilisateur pour SSH</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#explication">Explication</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#configuration-de-ssh">Configuration de SSH</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#explication_1">Explication</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#attribution-dune-ip">Attribution d'une IP</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#test-connexion-ssh">Test connexion SSH</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#encapsulation-port">Encapsulation port</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#explication_2">Explication</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../config-switch/">Configuration d'un switch Cisco</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../reinitialisation-routeur/">Réinitialisation d'un routeur Cisco 1921</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../reinitialisation-switch/">Démarche reinitalisation Switch Cisco Catalyst 3750</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Mes Services</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Mes%20Services/AD-DNS/">Configuration</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Mes%20Services/DHCP/">Configuration d'un DHCP</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Problème</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Probl%C3%A8me/Cypher/">Cypher</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Probl%C3%A8me/Spanning-tree/">Spanning-tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Probl%C3%A8me/Stack/">Modification du stack</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Reseau</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../reseau/infra/">Infra</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">My Docs</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Hardware</li>
+      <li class="breadcrumb-item active">Configuration d'un routeur</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="configuration-dun-routeur">Configuration d'un routeur</h1>
+<h2 id="creation-dun-utilisateur-pour-ssh">Création d'un utilisateur pour SSH</h2>
+<p>Pour créer un utilisateur local permettant de se connecter au switch en SSH :</p>
+<pre><code>username NOM privilege 15 secret MDP
+</code></pre>
+<h3 id="explication">Explication</h3>
+<table>
+<thead>
+<tr>
+<th>Élément</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>username NOM</code></td>
+<td>Crée l'utilisateur</td>
+</tr>
+<tr>
+<td><code>privilege 15</code></td>
+<td>Attribue le niveau de privilège maximal</td>
+</tr>
+<tr>
+<td><code>secret MDP</code></td>
+<td>Définit le mot de passe de l'utilisateur</td>
+</tr>
+</tbody>
+</table>
+<p>Il est recommandé d'utiliser <code>secret</code> plutôt que <code>password</code>, car le mot de passe est stocké de manière plus sécurisée dans la configuration.</p>
+<hr />
+<h2 id="configuration-de-ssh">Configuration de SSH</h2>
+<p>Une configuration SSH complète peut être réalisée avec les commandes suivantes :</p>
+<pre><code class="language-bash">hostname RO-01
+
+ip domain-name exemple.local
+
+username NOM privilege 15 secret MDP
+
+crypto key generate rsa modulus 2048
+
+ip ssh version 2
+
+line vty 0 15
+ login local
+ transport input ssh
+</code></pre>
+<h3 id="explication_1">Explication</h3>
+<table>
+<thead>
+<tr>
+<th>Commande</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>hostname RO-01</code></td>
+<td>Définit le nom du switch</td>
+</tr>
+<tr>
+<td><code>ip domain-name exemple.local</code></td>
+<td>Définit le nom de domaine</td>
+</tr>
+<tr>
+<td><code>username NOM privilege 15 secret MDP</code></td>
+<td>Crée l'utilisateur local</td>
+</tr>
+<tr>
+<td><code>crypto key generate rsa modulus 2048</code></td>
+<td>Génère les clés RSA nécessaires à SSH</td>
+</tr>
+<tr>
+<td><code>ip ssh version 2</code></td>
+<td>Active SSH version 2</td>
+</tr>
+<tr>
+<td><code>line vty 0 15</code></td>
+<td>Sélectionne les lignes VTY</td>
+</tr>
+<tr>
+<td><code>login local</code></td>
+<td>Utilise les utilisateurs locaux</td>
+</tr>
+<tr>
+<td><code>transport input ssh</code></td>
+<td>Autorise les connexions SSH</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="attribution-dune-ip">Attribution d'une IP</h3>
+<p>Pour pouvoir administrer le routeur à distance, une adresse IP doit être configurée sur une interface accessible depuis le réseau d'administration.</p>
+<pre><code>interface GigabitEthernet0/0
+ ip address 192.168.1.1 255.255.255.0
+ no shutdown
+</code></pre>
+<h3 id="test-connexion-ssh">Test connexion SSH</h3>
+<p>Une fois l'utilisateur crée et une IP attribuée sur une interface du routeur dans le même réseau. On essaye de se connecter en SSH</p>
+<pre><code>ssh NOM@ip 
+</code></pre>
+<p>Si en essayant de vous connecter la reponse est : </p>
+<pre><code>Unable to negotiate with 'ip' port 22: no matching key exchange method found. Their offer: diffie-hellman-group1-sha1
+</code></pre>
+<p>voir <a href="Problème/Cypher.md">Cypher</a></p>
+<p>Après avoir mit le script la connexion sera possible avec le nom mit en "host"</p>
+<pre><code>ssh ****(host)
+</code></pre>
+<h3 id="encapsulation-port">Encapsulation port</h3>
+<p>Sur le port LAN il est possible de mettre plusieurs sous interface pour les VLAN</p>
+<p>Pour mettre une interface en sous interface :</p>
+<pre><code>conf t
+interface GigabitEthernet0/0.10
+encapsulation dot1q 10
+ip address 192.168.10.1 255.255.255.0
+end
+</code></pre>
+<h3 id="explication_2">Explication</h3>
+<table>
+<thead>
+<tr>
+<th>Commande</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>conf t</code></td>
+<td>Permet de se mettre en mode configuration</td>
+</tr>
+<tr>
+<td><code>encapsulation dot1q 10</code></td>
+<td>Active l'encapsulation 802.1Q et associe la sous-interface au VLAN 10</td>
+</tr>
+</tbody>
+</table>
+<hr />
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../.." class="btn btn-neutral float-left" title="📚 Documentation Réseau"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../config-switch/" class="btn btn-neutral float-right" title="Configuration d'un switch Cisco">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../.." style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../config-switch/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

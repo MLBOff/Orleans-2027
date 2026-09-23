@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://mlboff.github.io/Orleans-2027/Probl%C3%A8me/Spanning-tree/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Spanning-tree - My Docs</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Spanning-tree";
+        var mkdocs_page_input_path = "Probl\u00e8me/Spanning-tree.md";
+        var mkdocs_page_url = "/Orleans-2027/Probl%C3%A8me/Spanning-tree/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> My Docs
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">📚 Documentation Réseau</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Hardware</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Hardware/config-routeur/">Configuration d'un routeur</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Hardware/config-switch/">Configuration d'un switch Cisco</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Hardware/reinitialisation-routeur/">Réinitialisation d'un routeur Cisco 1921</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Hardware/reinitialisation-switch/">Démarche reinitalisation Switch Cisco Catalyst 3750</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Mes Services</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Mes%20Services/AD-DNS/">Configuration</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Mes%20Services/DHCP/">Configuration d'un DHCP</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Problème</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../Cypher/">Cypher</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Spanning-tree</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#contexte">Contexte</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#diagnostic">Diagnostic</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#resolution-du-probleme">Résolution du problème</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Stack/">Modification du stack</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Reseau</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../reseau/infra/">Infra</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">My Docs</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Problème</li>
+      <li class="breadcrumb-item active">Spanning-tree</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="spanning-tree">Spanning-tree</h1>
+<h2 id="contexte">Contexte</h2>
+<p>Il est possible que s'il y a eu une boucle sur un port, spanning-tree va bloquer se port et restera down en physique mais UP en faisant un <code>show interface</code> </p>
+<h2 id="diagnostic">Diagnostic</h2>
+<p>D'abord on verifie si le port est bloqué:</p>
+<pre><code>show spanning-tree interface [port]
+</code></pre>
+<p>Cela va afficher le VLAN affecté :</p>
+<pre><code>Vlan                Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+VLAN10              Desg BKN*19        128.7    P2p *TYPE_Inc
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Champ</th>
+<th>Valeur</th>
+<th>Signification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>VLAN</strong></td>
+<td><code>VLAN10</code></td>
+<td>Le VLAN concerné est le <strong>VLAN 10</strong></td>
+</tr>
+<tr>
+<td><strong>Role</strong></td>
+<td><code>Desg</code></td>
+<td><strong>Designated Port</strong></td>
+</tr>
+<tr>
+<td><strong>Sts</strong></td>
+<td><code>BKN</code></td>
+<td><strong>Broken</strong> : STP considère le port comme problématique</td>
+</tr>
+<tr>
+<td><strong>Cost</strong></td>
+<td><code>19</code></td>
+<td>Coût STP du lien</td>
+</tr>
+<tr>
+<td><strong>Prio.Nbr</strong></td>
+<td><code>128.7</code></td>
+<td>Priorité du port = 128, numéro de port = 7</td>
+</tr>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>P2p *TYPE_Inc</code></td>
+<td>Le lien est considéré comme <strong>point-à-point</strong> et Type de port STP incohérent</td>
+</tr>
+</tbody>
+</table>
+<h2 id="resolution-du-probleme">Résolution du problème</h2>
+<p>Avant de désactiver STP sur tout les VLAN, on va d'abord essayer de le desactiver sur le port bloqué</p>
+<pre><code>interface FastEthernet1/0/1
+spanning-tree portfast
+</code></pre>
+<p>Si même avec la ligne <code>portfast</code> c'est toujours bloqué. On va désactiver STP sur le VLAN concerné</p>
+<pre><code>no spanning-tree vlan 10
+</code></pre>
+<p>ou alors si vous voulez le faire pour tout les VLAN</p>
+<pre><code>no spanning-tree vlan 1-4094
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../Cypher/" class="btn btn-neutral float-left" title="Cypher"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../Stack/" class="btn btn-neutral float-right" title="Modification du stack">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../Cypher/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../Stack/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
