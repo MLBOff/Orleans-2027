@@ -6,7 +6,9 @@
 ## 📖 Sommaire
 
 - [Hardware](Hardware/index.md)
+    - [Réinitialisation d'un Routeur 1921](Hardware/reinitialisation-routeur.md)
     - [Configuration d'un Routeur](Hardware/routeur.md)
+    - [Réinitialisation d'un Switch Catalyst 3750](Hardware/reinitialisation-switch.md)
     - [Configuration d'un Switch](Hardware/switch.md)
 
 - [Réseau](reseau/index.md)
