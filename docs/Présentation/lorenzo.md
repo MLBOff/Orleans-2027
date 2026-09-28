@@ -3,7 +3,7 @@
 
 ## Schéma logique 
 
-![mon schema](../assets/schema-logiquem.png)
+![mon schema](../assets/Schema-lo.png)
 
 ## Schéma Physique 
 
