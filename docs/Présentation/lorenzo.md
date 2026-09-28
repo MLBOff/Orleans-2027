@@ -1,4 +1,4 @@
-# Présentation 
+# Présentation de Lorenzo
 
 
 ## Schéma logique 
