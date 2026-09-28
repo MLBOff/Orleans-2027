@@ -7,4 +7,4 @@
 
 ## Schéma Physique 
 
-![mon schema](../assets/schema-ph.png)
+![mon schema](../assets/Schema-ph.png)
