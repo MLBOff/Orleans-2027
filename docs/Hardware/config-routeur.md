@@ -87,7 +87,7 @@ Après avoir mit le script la connexion sera possible avec le nom mit en "host"
 ```
 ssh ****(host)
 ```
-### Encapsulation port
+## Encapsulation port
 Sur le port LAN il est possible de mettre plusieurs sous interface pour les VLAN
 
 Pour mettre une interface en sous interface :
@@ -107,3 +107,5 @@ end
 | `encapsulation dot1q 10`         | Active l'encapsulation 802.1Q et associe la sous-interface au VLAN 10             |
 
 ---
+
+## Configuration du NAT
