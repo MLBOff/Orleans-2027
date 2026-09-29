@@ -1,4 +1,4 @@
-# Présentation Matheo
+# Présentation Mathe
 
 
 ## Schéma logique 
