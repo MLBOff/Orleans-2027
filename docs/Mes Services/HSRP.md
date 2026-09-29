@@ -46,10 +46,11 @@ En revanche, si la priorité du routeur actif est de 130, elle descend à 110, c
 
 ## Exemple prise en main du routeur Standby
 
-![passif](../assets/image.png)
+[![passif](../assets/image.png)](../assets/image.png)
 
 Sur cette image, au-dessus, on peut voir que le routeur R1 (192.168.149.253) est en *state Active* et le routeur R2 (192.168.149.252) en *state Standby*. Puis on voit R2 prendre la main en passant en *state Active*
 
-![actif](../assets/image2.png)
+
+[![passif](../assets/image2.png)](../assets/image2.png)
 
 Et dans cette image on voit R1 reprendre *state Active* et R2 repasser en *state Passive*
