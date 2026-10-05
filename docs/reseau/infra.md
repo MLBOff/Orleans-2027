@@ -1,11 +1,8 @@
-## Schéma reseau
+## Schéma logique 
 
-![mon schéma](../assets/schéma-reseau.png)
-
-
-## Schéma mana
-![mana](../assets/schema-mana.png)
+![mon schema](../assets/schema-logiquem.png)
 
 
-## Schéma switch
-![switch](../assets/schema-switch.png)
+## Schéma Physique 
+
+![mon schema](../assets/schéma-physique.png)
