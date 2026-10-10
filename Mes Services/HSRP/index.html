@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://mlboff.github.io/Orleans-2027/Mes%20Services/HSRP/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>HSRP - My Docs</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "HSRP";
+        var mkdocs_page_input_path = "Mes Services/HSRP.md";
+        var mkdocs_page_url = "/Orleans-2027/Mes%20Services/HSRP/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> My Docs
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">📚 Documentation Réseau</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Hardware</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Hardware/config-Firewall/">Configuration d'un firewall</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Hardware/config-routeur/">Configuration d'un routeur</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Hardware/config-switch/">Configuration d'un switch Cisco</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Hardware/reinitialisation-routeur/">Réinitialisation d'un routeur Cisco 1921</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Hardware/reinitialisation-switch/">Démarche reinitalisation Switch Cisco Catalyst 3750</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Mes Services</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../AD-DNS/">Configuration</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../DHCP/">Configuration d'un DHCP</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">HSRP</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#configuration-hsrp">Configuration HSRP</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#exemple-prise-en-main-du-routeur-standby">Exemple prise en main du routeur Standby</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Problème</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Probl%C3%A8me/Cypher/">Cypher</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Probl%C3%A8me/LACP/">LACP</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Probl%C3%A8me/Spanning-tree/">Spanning-tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Probl%C3%A8me/Stack/">Modification du stack</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Reseau</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../reseau/infra/">Infra</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../reseau/regle/">Regle</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">My Docs</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Mes Services</li>
+      <li class="breadcrumb-item active">HSRP</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="hsrp">HSRP</h1>
+<p><strong>HSRP</strong> (Hot Standby Router Protocol) est un protocole propriétaire Cisco de redondance de la passerelle par défaut.</p>
+<p>Dans un groupe HSRP :</p>
+<ul>
+<li>le routeur <strong>Active</strong> transmet les paquets envoyés à la passerelle virtuelle ;</li>
+<li>le routeur <strong>Standby</strong> surveille l'Active et se tient prêt à prendre le relais ;</li>
+<li>les autres routeurs éventuels restent à l'état Listen ;</li>
+<li>les postes utilisent une seule adresse IP virtuelle et une seule adresse MAC virtuelle.</li>
+</ul>
+<h2 id="configuration-hsrp">Configuration HSRP</h2>
+<p>Tout d'abord il faut choisir quel routeur sera le <strong>Active</strong> avec le nombre de priorité</p>
+<p><em>R1</em></p>
+<pre><code>standby 1 ip 'ip virtuelle' 
+standby 1 priority 110
+standby 1 preempt
+</code></pre>
+<p>Les paramètres suivants doivent être cohérents sur les deux équipements :</p>
+<ul>
+<li>le même numéro de groupe HSRP : 1 ;</li>
+<li>la même adresse IP virtuelle : 172.28.x.254 ;</li>
+<li>le même sous-réseau IP sur l'interface LAN.</li>
+<li>et forcement le même réseau de niveau 2 (même domaine de diffusion = même vlan)</li>
+</ul>
+<p><em>R2</em></p>
+<pre><code>standby 1 ip 'même ip virtuelle que R1'
+standby 1 priority 100
+standby 1 preempt
+</code></pre>
+<p>Le routeur qui aura le plus nombre de priority sera le routeur <strong>Active</strong> et l'autre sera en <strong>Standby</strong> prêt à prendre la main si l'autre tombe en panne.</p>
+<p>Le choix de la priorité (<code>priority</code>) est très important. En effet, lorsque le routeur actif perd la liaison surveillée, sa priorité peut diminuer de 20 points grâce au mécanisme de suivi d'interface (interface tracking).</p>
+<p>Par exemple, si le routeur actif possède une priorité de 110, celle-ci passe à 90, ce qui est inférieur à la priorité de 100 du routeur en veille. Ce dernier peut alors prendre le relais.</p>
+<p>En revanche, si la priorité du routeur actif est de 130, elle descend à 110, ce qui reste supérieur à la priorité de 100 du routeur en veille. Le routeur en veille ne prendra donc pas automatiquement le relais en raison de cette diminution de priorité.</p>
+<h2 id="exemple-prise-en-main-du-routeur-standby">Exemple prise en main du routeur Standby</h2>
+<p><a href="../../assets/image.png"><img alt="passif" src="../../assets/image.png" /></a></p>
+<p>Sur cette image, au-dessus, on peut voir que le routeur R1 (192.168.149.253) est en <em>state Active</em> et le routeur R2 (192.168.149.252) en <em>state Standby</em>. Puis on voit R2 prendre la main en passant en <em>state Active</em></p>
+<p><a href="../../assets/image2.png"><img alt="passif" src="../../assets/image2.png" /></a></p>
+<p>Et dans cette image on voit R1 reprendre <em>state Active</em> et R2 repasser en <em>state Passive</em></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../DHCP/" class="btn btn-neutral float-left" title="Configuration d'un DHCP"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../Probl%C3%A8me/Cypher/" class="btn btn-neutral float-right" title="Cypher">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../DHCP/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../Probl%C3%A8me/Cypher/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

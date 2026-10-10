@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://mlboff.github.io/Orleans-2027/Hardware/config-Firewall/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Configuration d'un firewall - My Docs</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Configuration d\u0027un firewall";
+        var mkdocs_page_input_path = "Hardware/config-Firewall.md";
+        var mkdocs_page_url = "/Orleans-2027/Hardware/config-Firewall/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> My Docs
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">📚 Documentation Réseau</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Hardware</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Configuration d'un firewall</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#reinitialisation-dun-firewall-stormshield">Réinitialisation d'un firewall Stormshield</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#1-mise-sous-tension">1. Mise sous tension</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2-reinitialisation-du-firewall">2. Réinitialisation du firewall</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#3-connexion-au-firewall">3. Connexion au firewall</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#4-acces-a-linterface-dinstallation">4. Accès à l'interface d'installation</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#5-connexion-a-linterface-dadministration">5. Connexion à l'interface d'administration</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_1"></a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../config-routeur/">Configuration d'un routeur</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../config-switch/">Configuration d'un switch Cisco</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../reinitialisation-routeur/">Réinitialisation d'un routeur Cisco 1921</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../reinitialisation-switch/">Démarche reinitalisation Switch Cisco Catalyst 3750</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Mes Services</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Mes%20Services/AD-DNS/">Configuration</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Mes%20Services/DHCP/">Configuration d'un DHCP</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Mes%20Services/HSRP/">HSRP</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Problème</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Probl%C3%A8me/Cypher/">Cypher</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Probl%C3%A8me/LACP/">LACP</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Probl%C3%A8me/Spanning-tree/">Spanning-tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Probl%C3%A8me/Stack/">Modification du stack</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Reseau</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../reseau/infra/">Infra</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../reseau/regle/">Regle</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">My Docs</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Hardware</li>
+      <li class="breadcrumb-item active">Configuration d'un firewall</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="configuration-dun-firewall">Configuration d'un firewall</h1>
+<h2 id="reinitialisation-dun-firewall-stormshield">Réinitialisation d'un firewall Stormshield</h2>
+<h3 id="1-mise-sous-tension">1. Mise sous tension</h3>
+<p>Commencez par brancher l'alimentation électrique du firewall Stormshield.</p>
+<h3 id="2-reinitialisation-du-firewall">2. Réinitialisation du firewall</h3>
+<p>À l'aide d'un objet fin et rigide, comme un trombone, appuyez sur le bouton de réinitialisation du firewall.</p>
+<p>Attendez que les <strong>trois voyants</strong> soient de nouveau allumés avant de poursuivre.</p>
+<h3 id="3-connexion-au-firewall">3. Connexion au firewall</h3>
+<p>Connectez votre ordinateur au firewall à l'aide d'un câble <strong>RJ45</strong>.</p>
+<p>Branchez le câble sur l'interface <strong>LAN</strong>, correspondant au <strong>port n°2</strong> du firewall.</p>
+<h3 id="4-acces-a-linterface-dinstallation">4. Accès à l'interface d'installation</h3>
+<p>Ouvrez un navigateur Internet et saisissez l'adresse suivante :</p>
+<p>https://10.0.0.254/install</p>
+<p>Suivez les différentes étapes affichées à l'écran afin de terminer l'installation du firewall.</p>
+<h3 id="5-connexion-a-linterface-dadministration">5. Connexion à l'interface d'administration</h3>
+<p>Une fois l'installation terminée, accédez à l'interface d'administration à l'adresse suivante :</p>
+<p>https://10.0.0.254/admin</p>
+<p><img alt="Login" src="../../assets/Login-FW.png" /></p>
+<p>Utilisez les identifiants suivants pour vous connecter :</p>
+<ul>
+<li><strong>Utilisateur :</strong> <code>admin</code></li>
+<li><strong>Mot de passe :</strong> <code>admin</code></li>
+</ul>
+<h2 id="_1"></h2>
+<h1 id="mise-a-jour-du-firmware-dun-firewall-stormshield">Mise à jour du firmware d'un firewall Stormshield</h1>
+<h3 id="1-modifier-temporairement-la-date-du-systeme">1. Modifier temporairement la date du système</h3>
+<p>Depuis l'interface d'administration du <strong>Stormshield</strong>, accédez aux paramètres de date et d'heure du système.</p>
+<p>Modifiez temporairement la date afin de définir une date située en <strong>2025</strong>.</p>
+<blockquote>
+<p><strong>Pourquoi utiliser une date en 2025 ?</strong>
+Cette modification permet de replacer temporairement le système dans une période compatible avec les droits de maintenance associés au boîtier.</p>
+</blockquote>
+<hr />
+<h3 id="2-redemarrer-le-firewall">2. Redémarrer le firewall</h3>
+<p>Après avoir modifié la date, effectuez un <strong>redémarrage complet du firewall</strong>.</p>
+<p>Ce redémarrage permet aux différents services du Stormshield de prendre correctement en compte la nouvelle date système.</p>
+<p>Une fois le redémarrage terminé :</p>
+<ol>
+<li>reconnectez-vous à l'interface d'administration ;</li>
+<li>vérifiez que la date configurée correspond bien à celle définie précédemment ;</li>
+<li>assurez-vous que le firewall fonctionne normalement.</li>
+</ol>
+<hr />
+<h3 id="3-installer-la-mise-a-jour-du-firmware">3. Installer la mise à jour du firmware</h3>
+<p>Vous pouvez maintenant procéder à l'installation du <strong>firmware prévu pour le modèle de boîtier concerné</strong>.</p>
+<h4 id="verifications-prealables">Vérifications préalables</h4>
+<p>Avant de lancer la mise à jour, vérifiez impérativement les éléments suivants :</p>
+<ul>
+<li><strong>Modèle du boîtier</strong> ;</li>
+<li><strong>Version actuelle de SNS</strong> ;</li>
+<li><strong>Compatibilité de la version cible</strong> avec le boîtier ;</li>
+<li><strong>Sauvegarde récente de la configuration</strong>.</li>
+</ul>
+<p>Une fois ces vérifications effectuées, lancez la procédure de mise à jour.</p>
+<blockquote>
+<p>⚠️ <strong>Attention :</strong>
+La mise à jour peut entraîner plusieurs redémarrages du firewall.
+<strong>Ne débranchez pas et ne coupez pas l'alimentation du boîtier pendant l'opération.</strong></p>
+</blockquote>
+<p>Attendez la fin complète de la mise à jour avant d'effectuer toute autre manipulation.</p>
+<hr />
+<h3 id="4-retablir-la-date-et-lheure-actuelles">4. Rétablir la date et l'heure actuelles</h3>
+<p>Une fois la mise à jour terminée et le firewall redémarré :</p>
+<ol>
+<li>reconnectez-vous à l'interface d'administration ;</li>
+<li>accédez aux paramètres de <strong>date et heure</strong> ;</li>
+<li>rétablissez <strong>la date et l'heure actuelles</strong> ;</li>
+<li>vérifiez la configuration de la synchronisation <strong>NTP</strong>, si celle-ci est utilisée ;</li>
+<li>contrôlez que la date et l'heure affichées par le système sont correctes.</li>
+</ol>
+<blockquote>
+<p><strong>Important :</strong>
+N'oubliez pas de rétablir la date réelle après la mise à jour afin d'éviter tout problème lié aux certificats, aux journaux système ou aux différents services du firewall.</p>
+</blockquote>
+<hr />
+<h3 id="5-verifications-finales">5. Vérifications finales</h3>
+<p>Après la mise à jour, effectuez quelques contrôles afin de vous assurer que le firewall fonctionne correctement :</p>
+<ul>
+<li>Vérifier la <strong>version du firmware/SNS</strong> installée ;</li>
+<li>Vérifier la <strong>date et l'heure du système</strong> ;</li>
+<li>Vérifier l'état des <strong>interfaces réseau</strong> ;</li>
+<li>Vérifier la connectivité réseau ;</li>
+<li>Vérifier que les principales règles de filtrage sont toujours présentes ;</li>
+<li>Vérifier que la configuration sauvegardée est correctement appliquée.</li>
+</ul>
+<p>La mise à jour est terminée lorsque l'ensemble de ces vérifications est conforme.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../.." class="btn btn-neutral float-left" title="📚 Documentation Réseau"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../config-routeur/" class="btn btn-neutral float-right" title="Configuration d'un routeur">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../.." style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../config-routeur/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
