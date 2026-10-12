@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://mlboff.github.io/Orleans-2027/reseau/regle/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Regle - My Docs</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Regle";
+        var mkdocs_page_input_path = "reseau/regle.md";
+        var mkdocs_page_url = "/Orleans-2027/reseau/regle/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> My Docs
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">📚 Documentation Réseau</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Hardware</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Hardware/config-Firewall/">Configuration d'un firewall</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Hardware/config-routeur/">Configuration d'un routeur</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Hardware/config-switch/">Configuration d'un switch Cisco</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Hardware/reinitialisation-routeur/">Réinitialisation d'un routeur Cisco 1921</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Hardware/reinitialisation-switch/">Démarche reinitalisation Switch Cisco Catalyst 3750</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Mes Services</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Mes%20Services/AD-DNS/">Configuration</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Mes%20Services/DHCP/">Configuration d'un DHCP</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Mes%20Services/HSRP/">HSRP</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Problème</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Probl%C3%A8me/Cypher/">Cypher</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Probl%C3%A8me/LACP/">LACP</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Probl%C3%A8me/Spanning-tree/">Spanning-tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Probl%C3%A8me/Stack/">Modification du stack</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Reseau</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../infra/">Infra</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Regle</a>
+    <ul class="current">
+    </ul>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">My Docs</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Reseau</li>
+      <li class="breadcrumb-item active">Regle</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h2 id="regles-de-pare-feu">Règles de pare-feu</h2>
+<table>
+<thead>
+<tr>
+<th>Source</th>
+<th>Destination</th>
+<th>Service (Port)</th>
+<th>Sens</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Internet</td>
+<td>DMZ</td>
+<td>HTTPS (443)</td>
+<td>Entrant</td>
+<td>Autoriser</td>
+</tr>
+<tr>
+<td>Internet</td>
+<td>VLAN Clients</td>
+<td>Tous</td>
+<td>Entrant</td>
+<td>Refuser</td>
+</tr>
+<tr>
+<td>Internet</td>
+<td>VLAN Serveurs</td>
+<td>Tous</td>
+<td>Entrant</td>
+<td>Refuser</td>
+</tr>
+<tr>
+<td>Internet</td>
+<td>VLAN Management</td>
+<td>Tous</td>
+<td>Entrant</td>
+<td>Refuser</td>
+</tr>
+<tr>
+<td>VLAN Clients</td>
+<td>Internet</td>
+<td>Tous</td>
+<td>Sortant</td>
+<td>Autoriser</td>
+</tr>
+<tr>
+<td>VLAN Clients</td>
+<td>VLAN Serveurs</td>
+<td>Ports applicatifs nécessaires</td>
+<td>Interne</td>
+<td>Autoriser</td>
+</tr>
+<tr>
+<td>VLAN Clients</td>
+<td>VLAN Management</td>
+<td>Tous</td>
+<td>Interne</td>
+<td>Refuser</td>
+</tr>
+<tr>
+<td>VLAN Management</td>
+<td>Pare-feu / équipements réseau</td>
+<td>SSH (22), RDP (3389)</td>
+<td>Interne</td>
+<td>Autoriser</td>
+</tr>
+<tr>
+<td>VLAN Management</td>
+<td>VLAN Serveurs</td>
+<td>SSH, RDP, HTTPS selon besoin</td>
+<td>Interne</td>
+<td>Autoriser</td>
+</tr>
+<tr>
+<td>VLAN Serveurs</td>
+<td>Internet</td>
+<td>HTTP/HTTPS, DNS</td>
+<td>Sortant</td>
+<td>Autoriser au cas par cas</td>
+</tr>
+<tr>
+<td>VLAN Serveurs</td>
+<td>VLAN Clients</td>
+<td>Tous</td>
+<td>Interne</td>
+<td>Refuser</td>
+</tr>
+<tr>
+<td>DMZ</td>
+<td>VLAN Clients</td>
+<td>Tous</td>
+<td>Interne</td>
+<td>Refuser</td>
+</tr>
+<tr>
+<td>DMZ</td>
+<td>VLAN Serveurs</td>
+<td>Ports applicatifs nécessaires</td>
+<td>Interne</td>
+<td>Autoriser au cas par cas</td>
+</tr>
+<tr>
+<td>LAN</td>
+<td>DMZ</td>
+<td>Ports nécessaires</td>
+<td>Interne</td>
+<td>Autoriser au cas par cas</td>
+</tr>
+<tr>
+<td>Tous</td>
+<td>Tous</td>
+<td>ICMP</td>
+<td>Selon besoin</td>
+<td>Limiter / autoriser selon besoin</td>
+</tr>
+<tr>
+<td>Tous</td>
+<td>Tous</td>
+<td>Tous</td>
+<td>Tous</td>
+<td>Refuser</td>
+</tr>
+</tbody>
+</table>
+<h2 id="matrice-de-flux">Matrice de Flux</h2>
+<table>
+<thead>
+<tr>
+<th>Adresse de destination</th>
+<th style="text-align: right;">Port de destination</th>
+<th>Identifiant / IP NAT</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IP Pub DMZ</td>
+<td style="text-align: right;">443</td>
+<td>IP Serveur WEB</td>
+</tr>
+<tr>
+<td>IP Pub DMZ</td>
+<td style="text-align: right;">Ports applicatifs nécessaires</td>
+<td>IP Serveur concerné</td>
+</tr>
+<tr>
+<td>IP VLAN Clients</td>
+<td style="text-align: right;">Tous</td>
+<td>Internet</td>
+</tr>
+<tr>
+<td>IP VLAN Management</td>
+<td style="text-align: right;">22, 3389</td>
+<td>Pare-feu / équipements réseau</td>
+</tr>
+<tr>
+<td>IP VLAN Management</td>
+<td style="text-align: right;">22, 3389, 443</td>
+<td>Serveurs concernés</td>
+</tr>
+<tr>
+<td>IP VLAN Serveurs</td>
+<td style="text-align: right;">80, 443, 53</td>
+<td>Internet</td>
+</tr>
+<tr>
+<td>IP DMZ</td>
+<td style="text-align: right;">Ports applicatifs nécessaires</td>
+<td>Serveurs internes concernés</td>
+</tr>
+<tr>
+<td>IP LAN</td>
+<td style="text-align: right;">Ports nécessaires</td>
+<td>Services DMZ concernés</td>
+</tr>
+</tbody>
+</table>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../infra/" class="btn btn-neutral float-left" title="Infra"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../infra/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
