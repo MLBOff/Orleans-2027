@@ -5,4 +5,4 @@
 
 ## Schéma Physique 
 
-![mon schema](../assets/schema-p.png)
+![mon schema](../assets/schema-phys.png)
