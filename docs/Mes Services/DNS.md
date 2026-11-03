@@ -1,4 +1,4 @@
-# Configuration DNS
+# DNS
 ## Unbound
 
 Ce guide détaille la configuration et la validation du résolveur DNS interne basé sur **Unbound** pour le réseau local (LAN) du projet SportLudique.
