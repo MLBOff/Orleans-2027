@@ -11,9 +11,7 @@
     - [Réinitialisation d'un Switch Catalyst 3750](Hardware/reinitialisation-switch.md)
     - [Configuration d'un Switch](Hardware/switch.md)
     - [Configuration d'un FireWall](Hardware/config-Firewall.md)
-    - [Configuration du DNS coté LAN](DNS-LAN.md)
-    - [Configuration du DNS split coté DMZ](DNS-DMZ.md)
-
+    
 - [Réseau](reseau/index.md)
     - [VLAN](reseau/vlan.md)
     - [INFRA](reseau/infra.md)
@@ -26,3 +24,4 @@
 
 - [Services](Services/index.md)
     - [DHCP](Services/DHCP.md)
+    - [Configuration du DNS (Unbound / Bind9)](Services/DNS.md)
