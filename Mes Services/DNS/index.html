@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://mlboff.github.io/Orleans-2027/Mes%20Services/DNS/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>DNS - My Docs</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "DNS";
+        var mkdocs_page_input_path = "Mes Services/DNS.md";
+        var mkdocs_page_url = "/Orleans-2027/Mes%20Services/DNS/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> My Docs
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">📚 Documentation Réseau</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Hardware</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Hardware/config-Firewall/">Configuration d'un firewall</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Hardware/config-routeur/">Configuration d'un routeur</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Hardware/config-switch/">Configuration d'un switch Cisco</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Hardware/reinitialisation-routeur/">Réinitialisation d'un routeur Cisco 1921</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Hardware/reinitialisation-switch/">Démarche reinitalisation Switch Cisco Catalyst 3750</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Mes Services</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">DNS</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#unbound">Unbound</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#1-objectifs-de-larchitecture">1. Objectifs de l'architecture</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2-configuration-dunbound-etcunboundunboundconfdconfconf">2. Configuration d'Unbound (/etc/unbound/unbound.conf.d/conf.conf)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3-explications-detaillees-de-la-configuration">3. Explications détaillées de la configuration</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#section-server-parametres-generaux-et-securite">Section server: (Paramètres Généraux et Sécurité)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#section-stub-zone-redirection-locale-dautorite">Section stub-zone: (Redirection locale d'autorité)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#section-forward-zone-redirection-conditionnelle-globale">Section forward-zone: (Redirection conditionnelle globale)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#4-procedure-de-verification">4. Procédure de Vérification</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#validation-de-la-syntaxe">Validation de la syntaxe</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#redemarrage-du-service">Redémarrage du service</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#tests-depuis-un-poste-client-du-lan">Tests depuis un poste client du LAN</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#bind9">Bind9</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#1-cartographie-et-role-des-fichiers-de-linfrastructure">1. Cartographie et rôle des fichiers de l'infrastructure</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2-decryptage-du-fichier-dordonnancement-principal-etcbindnamedconf">2. Décryptage du fichier d'ordonnancement principal (/etc/bind/named.conf)</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#contenu-complet-du-fichier">Contenu complet du fichier :</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#explications-detaillees">Explications détaillées :</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3-logique-de-routage-et-filtrage-etcbindnamedconflocal">3. Logique de routage et filtrage (/etc/bind/named.conf.local)</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#contenu-complet-du-fichier_1">Contenu complet du fichier :</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#explications-detaillees_1">Explications détaillées :</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#4-structure-semantique-des-fichiers-de-zone-dborleans">4. Structure sémantique des fichiers de zone (db.orleans...)</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#a-contenu-complet-de-la-zone-interne-etcbinddborleanssportludiquefrinterne">A. Contenu complet de la zone interne (/etc/bind/db.orleans.sportludique.fr.interne)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#b-contenu-complet-de-la-zone-externe-etcbinddborleanssportludiquefrexterne">B. Contenu complet de la zone externe (/etc/bind/db.orleans.sportludique.fr.externe)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#explications-detaillees-des-composants-de-zone">Explications détaillées des composants de zone :</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../HSRP/">HSRP</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Web/">Serveur WEB (Apache)</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Problème</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Probl%C3%A8me/Cypher/">Cypher</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Probl%C3%A8me/LACP/">LACP</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Probl%C3%A8me/Spanning-tree/">Spanning-tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Probl%C3%A8me/Stack/">Modification du stack</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Reseau</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../reseau/infra/">Infra</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../reseau/regle/">Regle</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">My Docs</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Mes Services</li>
+      <li class="breadcrumb-item active">DNS</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="dns">DNS</h1>
+<h2 id="unbound">Unbound</h2>
+<p>Ce guide détaille la configuration et la validation du résolveur DNS interne basé sur <strong>Unbound</strong> pour le réseau local (LAN) du projet SportLudique.</p>
+<h2 id="1-objectifs-de-larchitecture">1. Objectifs de l'architecture</h2>
+<p>Le résolveur interne a pour missions de :
+* Résoudre et mettre en cache les requêtes des postes du LAN.
+* Rediriger les requêtes de la zone locale (<code>orleans.sportludique.fr.</code>) vers le DNS d'autorité en DMZ.
+* Transmettre les requêtes globales et de la zone parente (<code>sportludique.fr</code>) vers le DNS de l'enseignant.
+* Sécuriser l'accès en restreignant les requêtes au seul réseau local autorisé.</p>
+<h2 id="2-configuration-dunbound-etcunboundunboundconfdconfconf">2. Configuration d'Unbound (<code>/etc/unbound/unbound.conf.d/conf.conf</code>)</h2>
+<p>Voici le fichier de configuration implémenté sur le serveur <code>ORL-SRV-DNS-LAN</code> :</p>
+<pre><code class="language-text">server:
+    val-permissive-mode: yes
+
+    hide-version: yes
+    hide-identity: yes
+
+    do-ip4: yes
+    do-ip6: no
+
+    do-tcp: yes
+    do-udp: yes
+
+    verbosity: 1
+
+    interface: 172.28.141.4
+    interface: 127.0.0.1
+
+    access-control: 172.28.128.0/19 allow
+    access-control: 127.0.0.1 allow
+
+stub-zone:
+    name: &quot;orleans.sportludique.fr.&quot;
+    stub-addr: 192.168.149.3
+
+forward-zone:
+    name: &quot;sportludique.fr&quot;
+    forward-addr: 121.183.90.205
+</code></pre>
+<h2 id="3-explications-detaillees-de-la-configuration">3. Explications détaillées de la configuration</h2>
+<h3 id="section-server-parametres-generaux-et-securite">Section <code>server:</code> (Paramètres Généraux et Sécurité)</h3>
+<ul>
+<li><strong><code>val-permissive-mode: yes</code></strong> : Active le mode permissif pour la validation DNSSEC. Si la validation échoue, le résolveur renvoie tout de même la réponse au client au lieu de la bloquer, ce qui évite d'interrompre les flux en phase de test.</li>
+<li><strong><code>hide-version: yes</code> et <code>hide-identity: yes</code></strong> : Mesure de durcissement (sécurité). Empêche un utilisateur malveillant de connaître la version exacte d'Unbound ou l'identité du serveur via des requêtes spécifiques, limitant ainsi la recherche de vulnérabilités connues.</li>
+<li><strong><code>do-ip4: yes</code> / <code>do-ip6: no</code></strong> : Active exclusivement le traitement des requêtes en IPv4 et désactive l'IPv6, conformément au plan d'adressage du projet.</li>
+<li><strong><code>do-tcp: yes</code> / <code>do-udp: yes</code></strong> : Permet à Unbound de répondre à la fois en UDP (requêtes standards de moins de 512 octets) et en TCP (port 53), indispensable pour les réponses volumineuses ou les transferts de zone.</li>
+<li><strong><code>verbosity: 1</code></strong> : Niveau de journalisation standard. Il enregistre les alertes et les erreurs sans surcharger les fichiers de logs du serveur.</li>
+<li><strong><code>interface:</code></strong> : Spécifie les adresses IP sur lesquelles le service Unbound écoute. Le serveur écoute sur son IP locale (<code>172.28.141.4</code>) pour servir le LAN, et sur la boucle locale (<code>127.0.0.1</code>).</li>
+<li><strong><code>access-control:</code></strong> : Définit les listes de contrôle d'accès (ACL). Seuls le serveur lui-même et les machines appartenant au sous-réseau LAN (<code>172.28.128.0/19</code>) sont autorisés à interroger ce résolveur. Toutes les autres requêtes externes sont rejetées pour éviter que le serveur ne devienne un <em>open resolver</em> (vecteur d'attaques par amplification DNS).</li>
+</ul>
+<h3 id="section-stub-zone-redirection-locale-dautorite">Section <code>stub-zone:</code> (Redirection locale d'autorité)</h3>
+<ul>
+<li><strong><code>name: "orleans.sportludique.fr."</code></strong> : Indique que pour toutes les requêtes se terminant par ce domaine, Unbound ne doit pas faire de résolution récursive classique sur Internet.</li>
+<li><strong><code>stub-addr: 192.168.149.3</code></strong> : Redirige ces requêtes spécifiquement vers l'IP du serveur DNS d'autorité (BIND9) situé dans la DMZ. Une <em>stub-zone</em> est privilégiée ici car elle s'attend à interroger directement un serveur d'autorité.</li>
+</ul>
+<h3 id="section-forward-zone-redirection-conditionnelle-globale">Section <code>forward-zone:</code> (Redirection conditionnelle globale)</h3>
+<ul>
+<li><strong><code>name: "sportludique.fr"</code></strong> : Concerne le domaine parent du projet.</li>
+<li><strong><code>forward-addr: 121.183.90.205</code></strong> : Transmet toutes les requêtes de cette zone (ainsi que le reste des requêtes Internet externes) vers l'IP du résolveur DNS de l'enseignant.</li>
+</ul>
+<hr />
+<h2 id="4-procedure-de-verification">4. Procédure de Vérification</h2>
+<h3 id="validation-de-la-syntaxe">Validation de la syntaxe</h3>
+<p>Avant de redémarrer le service, validez l'absence d'erreurs de frappe dans le fichier de configuration :</p>
+<pre><code class="language-bash">unbound-checkconf
+</code></pre>
+<h3 id="redemarrage-du-service">Redémarrage du service</h3>
+<p>Si la syntaxe est correcte, appliquez les modifications :</p>
+<pre><code class="language-bash">sudo systemctl restart unbound
+sudo systemctl status unbound
+</code></pre>
+<h3 id="tests-depuis-un-poste-client-du-lan">Tests depuis un poste client du LAN</h3>
+<p>Depuis une machine du réseau <code>172.28.128.0/19</code>, configurez les paramètres réseau pour utiliser le résolveur <code>172.28.141.4</code>, puis effectuez les tests suivants :</p>
+<ol>
+<li>
+<p><strong>Test de la zone locale (DMZ)</strong> :
+   <code>bash
+   dig www.orleans.sportludique.fr</code>
+   <em>Vérification : La réponse doit correspondre à l'enregistrement configuré dans la vue interne de votre BIND9 en DMZ (IP privée).</em></p>
+</li>
+<li>
+<p><strong>Test de la zone pédagogique (Enseignant)</strong> :
+   <code>bash
+   dig sportludique.fr</code>
+   <em>Vérification : La requête doit être transmise avec succès au serveur <code>121.183.90.205</code> et retourner une réponse valide.</em></p>
+</li>
+</ol>
+<h2 id="bind9">Bind9</h2>
+<p>Cette section détaille l'organisation des fichiers de configuration du serveur d'autorité <code>ORL-SRV-DNS-DMZ</code> ainsi que leur logique interne.</p>
+<hr />
+<h2 id="1-cartographie-et-role-des-fichiers-de-linfrastructure">1. Cartographie et rôle des fichiers de l'infrastructure</h2>
+<p>Avant d'analyser le code, voici une vue d'ensemble des fichiers édictés sur le serveur d'autorité et la mission précise de chacun :</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Chemin du fichier</th>
+<th style="text-align: left;">Nom du fichier</th>
+<th style="text-align: left;">Rôle et responsabilité au sein de l'infrastructure</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>/etc/bind/named.conf</code></td>
+<td style="text-align: left;"><strong>Fichier d'ordonnancement</strong></td>
+<td style="text-align: left;">Point d'entrée principal du service BIND9. Il ne contient aucune règle de zone, mais orchestre et charge les autres sous-fichiers de configuration via la directive <code>include</code>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>/etc/bind/named.conf.local</code></td>
+<td style="text-align: left;"><strong>Gestionnaire des Vues (Split DNS)</strong></td>
+<td style="text-align: left;">C'est le cerveau du Split DNS. Il définit les listes de contrôle d'accès (ACL) pour identifier la provenance des clients et aiguille les requêtes vers la vue interne (<code>inside</code>) ou externe (<code>outside</code>).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>/etc/bind/db.orleans.sportludique.fr.interne</code></td>
+<td style="text-align: left;"><strong>Base de zone Interne</strong></td>
+<td style="text-align: left;">Base de données DNS exploitée par la vue <code>inside</code>. Elle répertorie les correspondances noms/IP privées (<code>192.168.x.x</code>) pour les utilisateurs du LAN et de la DMZ.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>/etc/bind/db.orleans.sportludique.fr.externe</code></td>
+<td style="text-align: left;"><strong>Base de zone Externe</strong></td>
+<td style="text-align: left;">Base de données DNS exploitée par la vue <code>outside</code>. Elle répertorie les correspondances noms/IP publiques (<code>221.x.x.x</code> / <code>183.x.x.x</code>) pour les requêtes provenant d'Internet.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="2-decryptage-du-fichier-dordonnancement-principal-etcbindnamedconf">2. Décryptage du fichier d'ordonnancement principal (<code>/etc/bind/named.conf</code>)</h2>
+<p>Ce fichier est lu en premier par le démon BIND9 (<code>named</code>) à son démarrage.</p>
+<h3 id="contenu-complet-du-fichier">Contenu complet du fichier :</h3>
+<pre><code class="language-text">// This is the primary configuration file for the BIND DNS server named.
+//
+// Please read /usr/share/doc/bind9/README.Debian for information on the
+// structure of BIND configuration files in Debian, *BEFORE* you customize
+// this configuration file.
+//
+// If you are just adding zones, please do that in /etc/bind/named.conf.local
+
+include &quot;/etc/bind/named.conf.options&quot;;
+include &quot;/etc/bind/named.conf.local&quot;;
+#include &quot;/etc/bind/named.conf.default-zones&quot;;
+</code></pre>
+<h3 id="explications-detaillees">Explications détaillées :</h3>
+<ul>
+<li><strong><code>include "/etc/bind/named.conf.options";</code></strong> : Cette directive charge les paramètres globaux et comportementaux du serveur DNS (les ports d'écoute, les ACL de récursion, les mécanismes de sécurité comme le masquage de version ou la protection contre les attaques par déni de service).</li>
+<li><strong><code>include "/etc/bind/named.conf.local";</code></strong> : Cette ligne permet de séparer la configuration d'usine des modifications de l'administrateur. Dans notre cas, elle charge toute la structure des vues (Split DNS).</li>
+<li><strong><code>#include "/etc/bind/named.conf.default-zones";</code> (Le piège du projet)</strong> : Cette ligne est commentée avec un caractère <code>#</code>. Par défaut, ce fichier contient les zones de bouclage local indispensables à une installation standard (telles que <code>localhost</code>, <code>127.in-addr.arpa</code>, etc.).<ul>
+<li><em>Pourquoi l'avoir désactivé ?</em> BIND9 impose une règle de syntaxe absolue : <strong>dès lors que la directive <code>view</code> est utilisée, TOUTES les zones gérées par le serveur doivent obligatoirement être déclarées à l'intérieur d'un bloc <code>view</code></strong>. Si cette ligne était restée active, ces zones par défaut se seraient retrouvées "hors vue", provoquant une erreur de syntaxe fatale au démarrage du service (<code>error: 'zones' found outside of a view</code>).</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="3-logique-de-routage-et-filtrage-etcbindnamedconflocal">3. Logique de routage et filtrage (<code>/etc/bind/named.conf.local</code>)</h2>
+<p>Ce fichier instancie la logique algorithmique du Split DNS. Il applique un traitement conditionnel basé sur la provenance (l'adresse IP source) des requêtes.</p>
+<h3 id="contenu-complet-du-fichier_1">Contenu complet du fichier :</h3>
+<pre><code class="language-text">acl &quot;lan&quot; {
+        127.0.0.1;
+        192.168.149.0/24;
+        172.28.0.0/19;
+};
+
+view &quot;inside&quot; {
+        match-clients {
+                lan;
+        };
+
+        zone &quot;orleans.sportludique.fr&quot; {
+                type master;
+                file &quot;/etc/bind/db.orleans.sportludique.fr.interne&quot;;
+        };
+};
+
+view &quot;outside&quot; {
+        match-clients {
+                any;
+        };
+
+        zone &quot;orleans.sportludique.fr&quot; {
+                type master;
+                file &quot;/etc/bind/db.orleans.sportludique.fr.externe&quot;;
+        };
+};
+</code></pre>
+<h3 id="explications-detaillees_1">Explications détaillées :</h3>
+<ul>
+<li><strong><code>acl "lan"</code></strong> : Crée une liste de contrôle d'accès (Access Control List) nommée <code>"lan"</code>. Elle sert d'alias pour regrouper un ensemble d'adresses réseau de confiance afin de simplifier la maintenance du fichier.<ul>
+<li><code>127.0.0.1;</code> : Autorise la boucle locale du serveur DNS lui-même à interroger et matcher sa propre vue interne (utile pour les diagnostics locaux).</li>
+<li><code>192.168.149.0/24;</code> : Représente le sous-réseau complet de la <strong>DMZ</strong>. Cela garantit que les serveurs applicatifs (Web, messagerie, etc.) situés dans la DMZ reçoivent les réponses DNS avec l'adressage privé.</li>
+<li><code>172.28.0.0/19;</code> : Correspond à la plage réseau globale de vos <strong>clients LAN</strong> (transmise à BIND9 par l'intermédiaire du résolveur Unbound).</li>
+</ul>
+</li>
+<li><strong><code>view "inside"</code> et <code>match-clients { lan; };</code></strong> : Déclare la vue réservée à l'infrastructure privée. BIND9 analyse l'adresse IP source du paquet UDP/TCP DNS entrant. Si cette IP appartient à l'ACL <code>"lan"</code>, le serveur bascule la requête exclusivement dans ce bloc et ignore le reste du fichier.<ul>
+<li><code>type master;</code> : Spécifie que ce serveur est le maître d'autorité sur cette zone (il détient le fichier original).</li>
+<li><code>file "/etc/bind/db.orleans.sportludique.fr.interne";</code> : Pointe vers le fichier de zone interne.</li>
+</ul>
+</li>
+<li><strong><code>view "outside"</code> et <code>match-clients { any; };</code></strong> : Le mot-clé <code>any</code> agit comme une règle par défaut (<em>catch-all</em>). Il désigne n'importe quelle adresse IP sur Internet.<ul>
+<li><em>Pourquoi l'ordre de déclaration est-il crucial ?</em> BIND9 analyse les blocs <code>view</code> de manière séquentielle, du haut vers le bas. Lorsqu'une requête arrive, il vérifie d'abord si elle matche l'ACL <code>lan</code>. Si c'est le cas, elle est traitée par la vue interne. Si elle ne provient pas du LAN, il passe à la vue suivante (<code>outside</code>). Comme cette dernière accepte <code>any</code>, toutes les requêtes externes (Internet, réseau enseignant) y sont capturées. <strong>Si vous inversiez l'ordre des vues, les clients du LAN correspondraient immédiatement au <code>any</code> de la vue externe et recevraient des adresses IP publiques, brisant le Split DNS.</strong></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="4-structure-semantique-des-fichiers-de-zone-dborleans">4. Structure sémantique des fichiers de zone (<code>db.orleans...</code>)</h2>
+<p>Les fichiers de zone traduisent les noms d'hôtes en adresses IP. Bien que leurs contenus (les adresses IP) diffèrent pour les deux populations de clients, leur structure syntaxique reste identique.</p>
+<h3 id="a-contenu-complet-de-la-zone-interne-etcbinddborleanssportludiquefrinterne">A. Contenu complet de la zone interne (<code>/etc/bind/db.orleans.sportludique.fr.interne</code>)</h3>
+<pre><code class="language-text">$TTL    86400
+@       IN      SOA     ns2.orleans.sportludique.fr. hostmaster.orleans.sportludique.fr. (
+                              2026101405 ; Serial
+                                    3600 ; Refresh
+                                     900 ; Retry
+                                 1209600 ; Expire
+                                   86400 ) ; Negative Cache TTL
+
+@       IN      NS      ns2.orleans.sportludique.fr.
+
+ns2     IN      A       192.168.149.4
+
+@       IN      A       192.168.149.5
+www     IN      A       192.168.149.5
+</code></pre>
+<h3 id="b-contenu-complet-de-la-zone-externe-etcbinddborleanssportludiquefrexterne">B. Contenu complet de la zone externe (<code>/etc/bind/db.orleans.sportludique.fr.externe</code>)</h3>
+<pre><code class="language-text">$TTL    86400
+@       IN      SOA     ns2.orleans.sportludique.fr. hostmaster.orleans.sportludique.fr. (
+                              2026101405 ; Serial
+                                    3600 ; Refresh
+                                     900 ; Retry
+                                 1209600 ; Expire
+                                   86400 ) ; Negative Cache TTL
+
+@       IN      NS      ns2.orleans.sportludique.fr.
+@       IN      NS      ns1.orleans.sportludique.fr.
+
+ns2     IN      A       221.87.145.1
+ns1     IN      A       183.44.45.2
+
+@       IN      A       221.87.145.1
+@       IN      A       183.44.45.2
+
+www     IN      A       221.87.145.1
+www     IN      A       183.44.45.2
+</code></pre>
+<h3 id="explications-detaillees-des-composants-de-zone">Explications détaillées des composants de zone :</h3>
+<ul>
+<li>
+<ul>
+<li><strong>Les enregistrements de serveurs de noms (NS) :</strong></li>
+<li><code>@ IN NS ns2.orleans.sportludique.fr.</code> : (Présent dans la zone interne et externe). Cet enregistrement indique que la machine nommée <code>ns2</code> possède l'autorité officielle sur la zone <code>orleans.sportludique.fr.</code> et a le droit de répondre aux clients.</li>
+<li><code>@ IN NS ns1.orleans.sportludique.fr.</code> : (Présent uniquement dans la zone externe). Déclare un deuxième serveur de noms (<code>ns1</code>) visible depuis Internet. Cela permet d'assurer la haute disponibilité (redondance) : si un serveur DNS externe tombe en panne, l'autre prend le relais pour résoudre le nom de domaine.</li>
+</ul>
+</li>
+<li>
+<p><strong>L'enregistrement d'autorité racine de la zone (<code>@ IN A ...</code>) :</strong></p>
+<ul>
+<li><code>@ IN A 192.168.149.5</code> : (Zone interne). Fait pointer le domaine racine "nu" (sans <code>www</code>, soit juste <code>orleans.sportludique.fr</code>) directement vers l'adresse IP privée de votre serveur applicatif ou serveur web interne.</li>
+<li><code>@ IN A 221.87.145.1</code> et <code>@ IN A 183.44.45.2</code> : (Zone externe). Permet aux utilisateurs d'Internet d'accéder à votre site web de l'extérieur sans taper les trois <code>www</code>. Le fait de déclarer deux adresses IP distinctes permet à BIND9 de faire de la répartition de charge (<em>Round-Robin</em>).</li>
+</ul>
+</li>
+<li>
+<p><strong>Les hôtes spécifiques (Enregistrements A) :</strong></p>
+<ul>
+<li><code>ns2 IN A 192.168.149.4</code> : (Zone interne). Enregistrement d'encapsulation appelé "Glue Record". Il associe de manière rigide le nom <code>ns2</code> (déclaré plus haut dans le SOA et le NS) à l'adresse IP privée de votre serveur DNS d'autorité en DMZ.</li>
+<li><code>ns2 IN A 221.87.145.1</code> et <code>ns1 IN A 183.44.45.2</code> : (Zone externe). Associent les noms d'hôtes de vos serveurs DNS externes à leurs adresses IP publiques respectives afin qu'Internet puisse les localiser et les requêter.</li>
+<li><code>www IN A 192.168.149.5</code> : (Zone interne). Résout l'adresse du serveur web pour les utilisateurs locaux. Elle renvoie vers l'IP de la DMZ privée, évitant ainsi aux paquets de sortir inutilement du réseau d'entreprise.</li>
+<li><code>www IN A 221.87.145.1</code> et <code>www IN A 183.44.45.2</code> : (Zone externe). Offrent les points d'entrée publics pour charger le site web de l'organisation à l'extérieur du réseau de l'école.</li>
+</ul>
+</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../Hardware/reinitialisation-switch/" class="btn btn-neutral float-left" title="Démarche reinitalisation Switch Cisco Catalyst 3750"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../HSRP/" class="btn btn-neutral float-right" title="HSRP">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../../Hardware/reinitialisation-switch/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../HSRP/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

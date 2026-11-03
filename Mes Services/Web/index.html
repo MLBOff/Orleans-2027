@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://mlboff.github.io/Orleans-2027/Mes%20Services/Web/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Serveur WEB (Apache) - My Docs</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Serveur WEB (Apache)";
+        var mkdocs_page_input_path = "Mes Services/Web.md";
+        var mkdocs_page_url = "/Orleans-2027/Mes%20Services/Web/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> My Docs
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">📚 Documentation Réseau</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Hardware</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Hardware/config-Firewall/">Configuration d'un firewall</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Hardware/config-routeur/">Configuration d'un routeur</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Hardware/config-switch/">Configuration d'un switch Cisco</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Hardware/reinitialisation-routeur/">Réinitialisation d'un routeur Cisco 1921</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Hardware/reinitialisation-switch/">Démarche reinitalisation Switch Cisco Catalyst 3750</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Mes Services</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../DNS/">DNS</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../HSRP/">HSRP</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Serveur WEB (Apache)</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#1-objectif">1. Objectif</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2-mise-a-jour-du-systeme">2. Mise à jour du système</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3-installation-dapache2">3. Installation d'Apache2</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#4-verification-du-service-apache">4. Vérification du service Apache</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#5-verification-du-port-http">5. Vérification du port HTTP</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#6-acces-a-la-page-daccueil-apache">6. Accès à la page d'accueil Apache</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#7-organisation-des-fichiers-apache">7. Organisation des fichiers Apache</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#8-creation-dune-page-web-de-test">8. Création d'une page web de test</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#9-configuration-du-pare-feu">9. Configuration du pare-feu</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#10-consultation-des-journaux-apache">10. Consultation des journaux Apache</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Problème</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Probl%C3%A8me/Cypher/">Cypher</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Probl%C3%A8me/LACP/">LACP</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Probl%C3%A8me/Spanning-tree/">Spanning-tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Probl%C3%A8me/Stack/">Modification du stack</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Reseau</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../reseau/infra/">Infra</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../reseau/regle/">Regle</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">My Docs</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Mes Services</li>
+      <li class="breadcrumb-item active">Serveur WEB (Apache)</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="serveur-web-apache">Serveur WEB (Apache)</h1>
+<h2 id="1-objectif">1. Objectif</h2>
+<p>L'objectif est d'installer et de configurer un serveur web Apache2 sur une machine Debian.</p>
+<p>Apache permettra d'héberger et de publier des pages web accessibles depuis un navigateur à travers le protocole HTTP.</p>
+<p><strong>Environnement :</strong>
+- Système d'exploitation : Debian
+- Serveur web : Apache2
+- Protocole : HTTP
+- Port réseau : TCP 80
+- Répertoire web par défaut : <code>/var/www/html</code></p>
+<h2 id="2-mise-a-jour-du-systeme">2. Mise à jour du système</h2>
+<p>Avant l'installation, mettre à jour la liste des paquets :</p>
+<pre><code>sudo apt update
+</code></pre>
+<p>Installer les mises à jour disponibles :</p>
+<pre><code>sudo apt upgrade -y
+</code></pre>
+<h2 id="3-installation-dapache2">3. Installation d'Apache2</h2>
+<p>Installer le serveur web Apache2 :</p>
+<pre><code>sudo apt install apache2 
+</code></pre>
+<p>Activer Apache pour qu'il démarre automatiquement au démarrage de Debian :</p>
+<pre><code>sudo systemctl enable apache2
+</code></pre>
+<p>Démarrer le service :</p>
+<pre><code>sudo systemctl start apache2
+</code></pre>
+<h2 id="4-verification-du-service-apache">4. Vérification du service Apache</h2>
+<p>Vérifier que le service fonctionne correctement :</p>
+<pre><code>sudo systemctl status apache2
+</code></pre>
+<p>Le résultat attendu doit contenir :</p>
+<pre><code class="language-text">Active: active (running)
+</code></pre>
+<p>Cela confirme que le serveur Apache est démarré.</p>
+<h2 id="5-verification-du-port-http">5. Vérification du port HTTP</h2>
+<p>Apache utilise par défaut le port TCP 80 pour les connexions HTTP.</p>
+<p>Vérifier que le port est en écoute :</p>
+<pre><code class="language-bash">sudo ss -lntp | grep :80
+</code></pre>
+<p>Le résultat doit montrer qu'Apache écoute sur le port 80.</p>
+<h2 id="6-acces-a-la-page-daccueil-apache">6. Accès à la page d'accueil Apache</h2>
+<p>Par défaut, Apache installe une page d'accueil dans le répertoire :</p>
+<pre><code>/var/www/html/
+</code></pre>
+<p>Depuis un navigateur web, saisir l'adresse IP du serveur :</p>
+<pre><code>http://ADRESSE_IP_DU_SERVEUR
+</code></pre>
+<p>Exemple :</p>
+<pre><code class="language-text">http://192.168.1.100
+</code></pre>
+<p>La page d'accueil par défaut d'Apache doit apparaître.</p>
+<p>Il est également possible de tester directement depuis le serveur :</p>
+<pre><code>curl -I http://localhost
+</code></pre>
+<p>Une réponse HTTP <code>200 OK</code> indique que le serveur répond correctement.</p>
+<h2 id="7-organisation-des-fichiers-apache">7. Organisation des fichiers Apache</h2>
+<p>Sur Debian, les principaux fichiers et répertoires sont organisés de la manière suivante :</p>
+<table>
+<thead>
+<tr>
+<th>Chemin</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/etc/apache2/</code></td>
+<td>Répertoire principal de configuration</td>
+</tr>
+<tr>
+<td><code>/etc/apache2/apache2.conf</code></td>
+<td>Configuration générale d'Apache</td>
+</tr>
+<tr>
+<td><code>/etc/apache2/ports.conf</code></td>
+<td>Configuration des ports d'écoute</td>
+</tr>
+<tr>
+<td><code>/etc/apache2/sites-available/</code></td>
+<td>Configurations des sites disponibles</td>
+</tr>
+<tr>
+<td><code>/etc/apache2/sites-enabled/</code></td>
+<td>Configurations des sites activés</td>
+</tr>
+<tr>
+<td><code>/var/www/html/</code></td>
+<td>Répertoire web par défaut</td>
+</tr>
+<tr>
+<td><code>/var/log/apache2/</code></td>
+<td>Journaux du serveur Apache</td>
+</tr>
+</tbody>
+</table>
+<h2 id="8-creation-dune-page-web-de-test">8. Création d'une page web de test</h2>
+<p>La page d'accueil par défaut peut être remplacée par une page HTML personnalisée.</p>
+<p>Ouvrir le fichier :</p>
+<pre><code>sudo nano /var/www/html/index.html
+</code></pre>
+<p>Ajouter le contenu suivant :</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;fr&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;Mon serveur Apache&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Bienvenue sur mon serveur web !&lt;/h1&gt;
+    &lt;p&gt;Apache fonctionne correctement sur Debian.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>Enregistrer le fichier.</p>
+<p>Définir les permissions :</p>
+<pre><code class="language-bash">sudo chmod 644 /var/www/html/index.html
+</code></pre>
+<p>Depuis un navigateur, actualiser la page :</p>
+<pre><code class="language-text">http://ADRESSE_IP_DU_SERVEUR
+</code></pre>
+<p>La nouvelle page HTML doit maintenant apparaître.</p>
+<h2 id="9-configuration-du-pare-feu">9. Configuration du pare-feu</h2>
+<p>Si un pare-feu est installé et actif sur le serveur ou sur le réseau, il faut autoriser les connexions HTTP.</p>
+<p>Le trafic à autoriser est :</p>
+<table>
+<thead>
+<tr>
+<th>Source</th>
+<th>Destination</th>
+<th>Protocole</th>
+<th>Port</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Clients autorisés</td>
+<td>Serveur Debian</td>
+<td>TCP</td>
+<td>80</td>
+</tr>
+</tbody>
+</table>
+<p>Si UFW est utilisé, autoriser HTTP avec :</p>
+<pre><code class="language-bash">sudo ufw allow 80/tcp
+</code></pre>
+<p>Vérifier les règles :</p>
+<pre><code class="language-bash">sudo ufw status
+</code></pre>
+<h2 id="10-consultation-des-journaux-apache">10. Consultation des journaux Apache</h2>
+<p>Apache conserve des journaux permettant de suivre les connexions et les erreurs.</p>
+<p><strong>Journal des accès :</strong></p>
+<pre><code class="language-bash">sudo tail -f /var/log/apache2/access.log
+</code></pre>
+<p><strong>Journal des erreurs :</strong></p>
+<pre><code class="language-bash">sudo tail -f /var/log/apache2/error.log
+</code></pre>
+<p>Ces fichiers permettent de diagnostiquer les problèmes et de consulter les requêtes reçues par le serveur.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../HSRP/" class="btn btn-neutral float-left" title="HSRP"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../Probl%C3%A8me/Cypher/" class="btn btn-neutral float-right" title="Cypher">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../HSRP/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../Probl%C3%A8me/Cypher/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
