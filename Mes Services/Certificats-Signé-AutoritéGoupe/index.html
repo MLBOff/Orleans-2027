@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://mlboff.github.io/Orleans-2027/Mes%20Services/Certificats-Sign%C3%A9-Autorit%C3%A9Goupe/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Documentation PKI — Autorité de Certification et certificat web - My Docs</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Documentation PKI \u2014 Autorit\u00e9 de Certification et certificat web";
+        var mkdocs_page_input_path = "Mes Services/Certificats-Sign\u00e9-Autorit\u00e9Goupe.md";
+        var mkdocs_page_url = "/Orleans-2027/Mes%20Services/Certificats-Sign%C3%A9-Autorit%C3%A9Goupe/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> My Docs
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">📚 Documentation Réseau</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Hardware</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Hardware/config-Firewall/">Configuration d'un firewall</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Hardware/config-routeur/">Configuration d'un routeur</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Hardware/config-switch/">Configuration d'un switch Cisco</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Hardware/reinitialisation-routeur/">Réinitialisation d'un routeur Cisco 1921</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Hardware/reinitialisation-switch/">Démarche reinitalisation Switch Cisco Catalyst 3750</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Mes Services</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../Autorit%C3%A9Groupe-signer-Par-Prof/">AutoritéGroupe signer Par Prof</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Documentation PKI — Autorité de Certification et certificat web</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#1-architecture-et-organisation-des-fichiers">1. Architecture et organisation des fichiers</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#politique-de-securite-et-droits-dacces">Politique de sécurité et droits d'accès</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2-deploiement-de-lautorite-de-certification-ca">2. Déploiement de l'Autorité de Certification (CA)</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#generation-de-la-cle-privee-racine">Génération de la clé privée racine</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#emission-du-certificat-racine-autosigne">Émission du certificat racine autosigné</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#caracteristiques-du-certificat-racine">Caractéristiques du certificat racine</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3-production-du-certificat-du-serveur-web">3. Production du certificat du serveur web</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#generation-de-la-cle-privee-et-de-la-csr">Génération de la clé privée et de la CSR</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#4-signature-et-validation-du-certificat-serveur">4. Signature et validation du certificat serveur</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#signature-par-la-ca-dorleans">Signature par la CA d'Orléans</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#controle-dintegrite-et-de-chaine-de-confiance">Contrôle d'intégrité et de chaîne de confiance</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Certificats-autosign%C3%A9/">Comment créer un certificat autosigné</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../DNS/">DNS</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../HSRP/">HSRP</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Stalwart/">Stalwart</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Web/">Serveur WEB (Apache)</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Problème</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Probl%C3%A8me/Cypher/">Cypher</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Probl%C3%A8me/LACP/">LACP</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Probl%C3%A8me/Spanning-tree/">Spanning-tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Probl%C3%A8me/Stack/">Modification du stack</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Reseau</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../reseau/Infrastructure/">Infrastructure</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../reseau/R%C3%A8gle/">Règle</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">My Docs</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Mes Services</li>
+      <li class="breadcrumb-item active">Documentation PKI — Autorité de Certification et certificat web</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="documentation-pki-autorite-de-certification-et-certificat-web">Documentation PKI — Autorité de Certification et certificat web</h1>
+<p>Cette documentation décrit l'architecture et les procédures mises en œuvre pour déployer l'<strong>Autorité de Certification (CA)</strong> interne du site d'Orléans sportludique.fr et délivrer le certificat TLS du serveur web Apache.</p>
+<hr />
+<h2 id="1-architecture-et-organisation-des-fichiers">1. Architecture et organisation des fichiers</h2>
+<p>L'ensemble des éléments cryptographiques est centralisé dans l'arborescence <code>~/pki-groupe</code>. Cette structure isole strictement les composants de l'autorité de certification de ceux du serveur web applicatif.</p>
+<pre><code class="language-text">pki-groupe/
+├── autorite/
+│   ├── certificats/
+│   │   └── ca-orleans.crt      # Certificat racine autosigné de la CA
+│   ├── cles/
+│   │   └── ca-orleans.key      # Clé privée de la CA (chiffrée)
+│   └── ca.srl                  # Compteur des numéros de série émis
+└── serveur/
+    ├── certificats/
+    │   └── web.crt             # Certificat final du serveur web
+    ├── cles/
+    │   └── web.key             # Clé privée du serveur web
+    └── demandes/
+        └── web.csr             # Demande de signature de certificat
+</code></pre>
+<h3 id="politique-de-securite-et-droits-dacces">Politique de sécurité et droits d'accès</h3>
+<p>Les répertoires hébergeant les clés privées (<code>autorite/cles/</code> et <code>serveur/cles/</code>) sont restreints au seul propriétaire (<code>chmod 700</code>). </p>
+<ul>
+<li><strong>Clé privée de la CA (<code>ca-orleans.key</code>) :</strong> Protégée par une phrase de passe (chiffrement AES-256). Cette double sécurité empêche toute émission frauduleuse de certificats en cas de compromission du fichier.</li>
+<li><strong>Clé privée du serveur (<code>web.key</code>) :</strong> Non chiffrée afin de permettre le redémarrage automatique du service Apache sans intervention manuelle.</li>
+</ul>
+<hr />
+<h2 id="2-deploiement-de-lautorite-de-certification-ca">2. Déploiement de l'Autorité de Certification (CA)</h2>
+<p>L'autorité racine du site d'Orléans repose sur une paire de clés asymétriques <strong>RSA 4096 bits</strong>, dimensionnée pour garantir une robustesse cryptographique sur le long terme.</p>
+<h3 id="generation-de-la-cle-privee-racine">Génération de la clé privée racine</h3>
+<pre><code class="language-bash">openssl genpkey -algorithm RSA -aes-256-cbc \
+  -pkeyopt rsa_keygen_bits:4096 \
+  -out autorite/cles/ca-orleans.key
+</code></pre>
+<h3 id="emission-du-certificat-racine-autosigne">Émission du certificat racine autosigné</h3>
+<p>En tant qu'autorité racine, la CA signe son propre certificat pour une durée de validité de 365 jours :</p>
+<pre><code class="language-bash">openssl req -new -x509 -days 365 \
+  -key autorite/cles/ca-orleans.key \
+  -out autorite/certificats/ca-orleans.crt
+</code></pre>
+<h3 id="caracteristiques-du-certificat-racine">Caractéristiques du certificat racine</h3>
+<p>Le contrôle via <code>openssl x509 -in autorite/certificats/ca-orleans.crt -noout -text</code> valide les propriétés suivantes :
+* <strong>Subject et Issuer :</strong> Identiques (certificat autosigné).
+* <strong>Extension <code>CA:TRUE</code> :</strong> Habilite ce certificat à signer des certificats tiers.</p>
+<blockquote>
+<p><strong>Déploiement client :</strong> Ce certificat racine (<code>ca-orleans.crt</code>) doit être importé dans le magasin de confiance des postes clients du domaine afin que les navigateurs reconnaissent la chaîne de confiance sans afficher d'alerte de sécurité.</p>
+</blockquote>
+<hr />
+<h2 id="3-production-du-certificat-du-serveur-web">3. Production du certificat du serveur web</h2>
+<p>Le serveur web d'Orléans est accessible via deux enregistrements DNS distincts : <code>www.orleans.sportludique.fr</code> (nom principal) et <code>orleans.sportludique.fr</code> (nom alternatif).</p>
+<h3 id="generation-de-la-cle-privee-et-de-la-csr">Génération de la clé privée et de la CSR</h3>
+<p>Une clé <strong>RSA 3072 bits</strong> est générée pour le serveur, offrant un équilibre optimal entre sécurité et performances lors des négociations TLS :</p>
+<pre><code class="language-bash">openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:3072 \
+  -out serveur/cles/web.key
+</code></pre>
+<p>La demande de signature de certificat (<strong>CSR</strong>) intègre obligatoirement l'extension <strong>SAN</strong> (<em>Subject Alternative Name</em>). Les navigateurs modernes s'appuient exclusivement sur ce champ — et non sur le seul <em>Common Name</em> (CN) — pour valider l'identité du domaine consulté :</p>
+<pre><code class="language-bash">openssl req -new -sha256 \
+  -key serveur/cles/web.key \
+  -out serveur/demandes/web.csr \
+  -addext &quot;subjectAltName=DNS:www.orleans.sportludique.fr,DNS:orleans.sportludique.fr&quot;
+</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Attribut X.509</th>
+<th style="text-align: left;">Valeur configurée</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Country Name (C)</strong></td>
+<td style="text-align: left;"><code>FR</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Organization Name (O)</strong></td>
+<td style="text-align: left;"><code>SportLudique</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Common Name (CN)</strong></td>
+<td style="text-align: left;"><code>www.orleans.sportludique.fr</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Subject Alternative Name (SAN)</strong></td>
+<td style="text-align: left;"><code>DNS:www.orleans.sportludique.fr</code>, <code>DNS:orleans.sportludique.fr</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="4-signature-et-validation-du-certificat-serveur">4. Signature et validation du certificat serveur</h2>
+<h3 id="signature-par-la-ca-dorleans">Signature par la CA d'Orléans</h3>
+<p>La CA signe la demande <code>web.csr</code> et génère le certificat final <code>web.crt</code> :</p>
+<pre><code class="language-bash">openssl x509 -req -days 365 \
+  -in serveur/demandes/web.csr \
+  -CA autorite/certificats/ca-orleans.crt \
+  -CAkey autorite/cles/ca-orleans.key \
+  -CAserial autorite/ca.srl \
+  -CAcreateserial \
+  -out serveur/certificats/web.crt \
+  -copy_extensions copy
+</code></pre>
+<ul>
+<li><strong>Conservation des extensions (<code>-copy_extensions copy</code>) :</strong> Transfère explicitement les noms DNS déclarés dans les SAN de la CSR vers le certificat signé.</li>
+<li><strong>Suivi des séries (<code>ca.srl</code>) :</strong> Maintient l'unicité des numéros de série attribués par la CA.</li>
+</ul>
+<h3 id="controle-dintegrite-et-de-chaine-de-confiance">Contrôle d'intégrité et de chaîne de confiance</h3>
+<p>La conformité du certificat final est validée par deux vérifications :</p>
+<ol>
+<li><strong>Inspection des métadonnées et des SAN :</strong>
+   <code>bash
+   openssl x509 -in serveur/certificats/web.crt \
+     -noout -subject -issuer -dates -ext subjectAltName</code></li>
+<li><strong>Validation cryptographique de la chaîne :</strong>
+   <code>bash
+   openssl verify -CAfile autorite/certificats/ca-orleans.crt serveur/certificats/web.crt</code>
+   <em>Résultat obtenu :</em> <code>serveur/certificats/web.crt: OK</code></li>
+</ol>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../Autorit%C3%A9Groupe-signer-Par-Prof/" class="btn btn-neutral float-left" title="AutoritéGroupe signer Par Prof"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../Certificats-autosign%C3%A9/" class="btn btn-neutral float-right" title="Comment créer un certificat autosigné">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../Autorit%C3%A9Groupe-signer-Par-Prof/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../Certificats-autosign%C3%A9/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

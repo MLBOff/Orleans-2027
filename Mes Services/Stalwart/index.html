@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://mlboff.github.io/Orleans-2027/Mes%20Services/Stalwart/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Stalwart - My Docs</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Stalwart";
+        var mkdocs_page_input_path = "Mes Services/Stalwart.md";
+        var mkdocs_page_url = "/Orleans-2027/Mes%20Services/Stalwart/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> My Docs
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">📚 Documentation Réseau</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Hardware</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Hardware/config-Firewall/">Configuration d'un firewall</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Hardware/config-routeur/">Configuration d'un routeur</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Hardware/config-switch/">Configuration d'un switch Cisco</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Hardware/reinitialisation-routeur/">Réinitialisation d'un routeur Cisco 1921</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Hardware/reinitialisation-switch/">Démarche reinitalisation Switch Cisco Catalyst 3750</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Mes Services</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../Autorit%C3%A9Groupe-signer-Par-Prof/">AutoritéGroupe signer Par Prof</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Certificats-Sign%C3%A9-Autorit%C3%A9Goupe/">Documentation PKI — Autorité de Certification et certificat web</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Certificats-autosign%C3%A9/">Comment créer un certificat autosigné</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../DNS/">DNS</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../HSRP/">HSRP</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Stalwart</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#prealable">Préalable</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#installation-stalwart">Installation Stalwart</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#configuration-stalwart">Configuration Stalwart</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#server-identity">Server Identity</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#stockage">Stockage</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#account-directory">Account Directory</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#logs">Logs</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#dns">DNS</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#administration">Administration</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Web/">Serveur WEB (Apache)</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Problème</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Probl%C3%A8me/Cypher/">Cypher</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Probl%C3%A8me/LACP/">LACP</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Probl%C3%A8me/Spanning-tree/">Spanning-tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Probl%C3%A8me/Stack/">Modification du stack</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Reseau</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../reseau/Infrastructure/">Infrastructure</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../reseau/R%C3%A8gle/">Règle</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">My Docs</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Mes Services</li>
+      <li class="breadcrumb-item active">Stalwart</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="stalwart">Stalwart</h1>
+<h2 id="prealable">Préalable</h2>
+<p>Tout d'abord on va préparer la zone DNS du domaine.On va ajouter un enregistrement A pour le serveur et un enregistrement MX pointant vers ce nom :</p>
+<pre><code>@       IN MX 10 mail.orleans.sportludique.fr.
+mail    IN A     &lt;IP_Serveur_Mail&gt;
+</code></pre>
+<p>Et on vérifie que l'enregistrement est bien pris en compte</p>
+<pre><code>dig mail.ville.sportludique.fr A +short
+dig ville.sportludique.fr MX +short
+</code></pre>
+<h2 id="installation-stalwart">Installation Stalwart</h2>
+<p>Stalwart ne s'installe pas avec la commande <strong><em>sudo apt install</em></strong>. Alors on l'installe avec un script fournit par Stalwart et sera enregistré dans un fichier nommé <strong><em>install.sh</em></strong>.</p>
+<pre><code>curl --proto '=https' --tlsv1.2 -sSf https://get.stalw.art/install.sh -o install.sh
+</code></pre>
+<p>Ensuite on peut exécuter le fichier</p>
+<pre><code>sudo sh install.sh
+</code></pre>
+<p>On verifie l'installation de Stalwart :</p>
+<pre><code>sudo systemctl status stalwart
+</code></pre>
+<p>Et on regarde les ports ouverts :</p>
+<pre><code>sudo ss -lntp
+</code></pre>
+<h2 id="configuration-stalwart">Configuration Stalwart</h2>
+<p>Une fois Stalwart installé, la configuration ce fait via une interface web accessible avec l'ip de la machine et vous devez arriver sur cette page :</p>
+<p><img alt="page_de_connexion" src="../../image_stal/connexion_stal.png" /></p>
+<p>Vous retrouverez l'identifiant et le mot de passe pour la première connexion dans les logs de stalwart 
+<strong>!Mot de passe de l'user admin à modifier!</strong></p>
+<pre><code>journalctl -u stalwart -n 200
+</code></pre>
+<p><img alt="journal" src="../../image_stal/journalctl_stal.png" /></p>
+<p>Une fois connecté en <strong>admin</strong> vous pouvez commencer la configuration.</p>
+<h2 id="server-identity">Server Identity</h2>
+<p>La première étape est de :
+- mettre le nom du serveur (mail.orleans.sportludique.fr)</p>
+<ul>
+<li>mettre le nom de domaine (orleans.sportludique.fr)</li>
+</ul>
+<p><img alt="Server_Identity" src="../../image_stal/Server_identity_stal.png" /></p>
+<h2 id="stockage">Stockage</h2>
+<p>La seconde étape est de choisir un type de stockage. Dans notre cas on va utiliser SQLite.</p>
+<p>SQLite va chercher un fichier où il peut écrire dedans, pour cela on va créer un fichier dans le répertoire /var/lib/stalwart/.</p>
+<p><img alt="logs" src="../../image_stal/db_stal.png" /></p>
+<p>Lors de l'installation de Stalwart, un user et un groupe se nommant <strong>Stalwart</strong>. Il faut donc attribuer la propriété a l'user et au groupe Stalwart au chemin /var/lib/stalwart/"nom".db</p>
+<p><img alt="droit" src="../../image_stal/droit_stal.png" /></p>
+<p>Sinon vous aurez ce message d'erreur :</p>
+<p><img alt="fail" src="../../image_stal/fail_droit_stal.png" /></p>
+<h2 id="account-directory">Account Directory</h2>
+<p>Par défaut
+<img alt="account" src="../../image_stal/account_directory_stal.png" /></p>
+<h2 id="logs">Logs</h2>
+<p>Cette étape sert à choisir le type de logs que vous souhaitez avoir. Dans notre cas on veut un fichier de logs qui sera nommé <strong>stalwart.log</strong> dans le chemin <strong><em>/var/log/stalwart/</em></strong> avec une frequence journalier.</p>
+<p><img alt="log" src="../../image_stal/logs_stal.png" /></p>
+<h2 id="dns">DNS</h2>
+<p>Etant donné que nous avons notre propre serveur DNS on choisit un management manuel.</p>
+<p><img alt="dns" src="../../image_stal/dns_stal.png" /></p>
+<p>Après la configuration faite, redemarrez le service :</p>
+<pre><code>sudo systemctl restart stalwart
+</code></pre>
+<h2 id="administration">Administration</h2>
+<p>Maintenant que Stalwart est configuré on peut commencer a l'administrer et le parametrer a nos besoins.</p>
+<p>Si votre DNS a bien été configuré avec les bons enregistrements, (voir <a href="#préalable">Préalable</a>) vous pourrez avoir accès a l'interface web en https, dans notre cas : </p>
+<pre><code>https://mail.orleans.sportludique.fr
+</code></pre>
+<p>Une fois connecté, vérifiez le domaine dans :
+<strong>Management &gt; Domains &gt; Domains</strong> </p>
+<p>et verifiez que c'est bien <strong>ENABLED</strong></p>
+<p><img alt="domains" src="../../image_stal/domains_stal.png" /></p>
+<p>## Ouverture des ports</p>
+<p>Dans <code>Settings › Network › Listeners</code>, créer (ou modifier) deux écouteurs sans chiffrement :</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Champ</th>
+<th style="text-align: left;">Soumission SMTP</th>
+<th style="text-align: left;">Consultation IMAP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Listener Id</strong></td>
+<td style="text-align: left;"><code>submission</code></td>
+<td style="text-align: left;"><code>imap</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Protocol</strong></td>
+<td style="text-align: left;"><code>SMTP (smtp)</code></td>
+<td style="text-align: left;"><code>IMAP (imap)</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Bind addresses</strong></td>
+<td style="text-align: left;"><code>ipv4-service:587</code></td>
+<td style="text-align: left;"><code>ipv4-service:143</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Enable TLS (<code>useTls</code>)</strong></td>
+<td style="text-align: left;">Désactivé</td>
+<td style="text-align: left;">Désactivé</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Implicit TLS (<code>implicitTls</code>)</strong></td>
+<td style="text-align: left;">Désactivé</td>
+<td style="text-align: left;">Désactivé</td>
+</tr>
+</tbody>
+</table>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../HSRP/" class="btn btn-neutral float-left" title="HSRP"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../Web/" class="btn btn-neutral float-right" title="Serveur WEB (Apache)">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../HSRP/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../Web/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

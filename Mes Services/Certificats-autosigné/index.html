@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://mlboff.github.io/Orleans-2027/Mes%20Services/Certificats-autosign%C3%A9/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Comment créer un certificat autosigné - My Docs</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Comment cr\u00e9er un certificat autosign\u00e9";
+        var mkdocs_page_input_path = "Mes Services/Certificats-autosign\u00e9.md";
+        var mkdocs_page_url = "/Orleans-2027/Mes%20Services/Certificats-autosign%C3%A9/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> My Docs
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">📚 Documentation Réseau</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Hardware</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Hardware/config-Firewall/">Configuration d'un firewall</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Hardware/config-routeur/">Configuration d'un routeur</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Hardware/config-switch/">Configuration d'un switch Cisco</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Hardware/reinitialisation-routeur/">Réinitialisation d'un routeur Cisco 1921</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Hardware/reinitialisation-switch/">Démarche reinitalisation Switch Cisco Catalyst 3750</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Mes Services</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../Autorit%C3%A9Groupe-signer-Par-Prof/">AutoritéGroupe signer Par Prof</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Certificats-Sign%C3%A9-Autorit%C3%A9Goupe/">Documentation PKI — Autorité de Certification et certificat web</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Comment créer un certificat autosigné</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#prerequis">Prérequis</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#methode-1-creation-rapide-en-une-seule-commande">Méthode 1 : Création rapide en une seule commande</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#detail-des-options">Détail des options :</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#methode-2-creation-etape-par-etape-cle-csr-certificat">Méthode 2 : Création étape par étape (Clé -&gt; CSR -&gt; Certificat)</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#1-generer-la-cle-privee">1. Générer la clé privée</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2-creer-la-demande-de-signature-de-certificat-csr">2. Créer la demande de signature de certificat (CSR)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#3-signer-le-certificat-avec-sa-propre-cle-privee">3. Signer le certificat avec sa propre clé privée</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#verification-et-securisation">Vérification et sécurisation</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#verifier-le-contenu-du-certificat">Vérifier le contenu du certificat</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#securiser-les-permissions-important">Sécuriser les permissions (Important)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#limites-a-retenir">Limites à retenir</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../DNS/">DNS</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../HSRP/">HSRP</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Stalwart/">Stalwart</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Web/">Serveur WEB (Apache)</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Problème</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Probl%C3%A8me/Cypher/">Cypher</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Probl%C3%A8me/LACP/">LACP</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Probl%C3%A8me/Spanning-tree/">Spanning-tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Probl%C3%A8me/Stack/">Modification du stack</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Reseau</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../reseau/Infrastructure/">Infrastructure</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../reseau/R%C3%A8gle/">Règle</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">My Docs</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Mes Services</li>
+      <li class="breadcrumb-item active">Comment créer un certificat autosigné</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="comment-creer-un-certificat-autosigne">Comment créer un certificat autosigné</h1>
+<p>Un <strong>certificat autosigné</strong> est un certificat numérique signé par sa propre clé privée, sans passer par une Autorité de Certification (CA) tierce. Il est idéal pour les environnements de test, de développement ou internes, bien qu'il affiche une alerte de sécurité dans les navigateurs.</p>
+<hr />
+<h3 id="prerequis">Prérequis</h3>
+<ul>
+<li>Disposer d'un accès terminal sur le serveur (Linux).</li>
+<li>Avoir l'outil <strong>OpenSSL</strong> installé (<code>openssl version</code>).</li>
+<li>Connaître le <strong>nom de domaine (FQDN)</strong> ou l'adresse IP du serveur (ex. : <code>www.sportludique.fr</code>).</li>
+</ul>
+<hr />
+<h2 id="methode-1-creation-rapide-en-une-seule-commande">Méthode 1 : Création rapide en une seule commande</h2>
+<p>Cette méthode génère simultanément la <strong>clé privée</strong> et le <strong>certificat autosigné</strong> (valable 365 jours) avec l'extension <strong>SAN</strong> (<em>Subject Alternative Name</em>), indispensable pour les navigateurs modernes.</p>
+<pre><code class="language-bash">openssl req -x509 -newkey rsa:4096 -sha256 -days 365 -nodes \
+  -keyout serveur.key \
+  -out serveur.crt \
+  -subj &quot;/C=FR/ST=Centre-Val de Loire/L=Chartres/O=SportLudique/CN=www.sportludique.fr&quot; \
+  -addext &quot;subjectAltName=DNS:www.sportludique.fr,DNS:sportludique.fr&quot;
+</code></pre>
+<h3 id="detail-des-options">Détail des options :</h3>
+<ul>
+<li><code>-x509</code> : Génère un certificat autosigné plutôt qu'une demande de signature (CSR).</li>
+<li><code>-newkey rsa:4096</code> : Crée une nouvelle clé privée RSA de 4096 bits.</li>
+<li><code>-sha256</code> : Utilise l'algorithme de hachage SHA-256.</li>
+<li><code>-days 365</code> : Définit la durée de validité à 1 an.</li>
+<li><code>-nodes</code> : (<em>No DES</em>) Ne chiffre pas la clé privée avec un mot de passe (évite de devoir le saisir à chaque redémarrage d'Apache/Nginx).</li>
+<li><code>-keyout</code> / <code>-out</code> : Noms des fichiers de sortie (clé privée et certificat public).</li>
+<li><code>-subj</code> : Informations d'identité du serveur (<code>CN</code> = <em>Common Name</em>).</li>
+<li><code>-addext</code> : Ajoute les noms DNS autorisés dans l'extension <strong>SAN</strong>.</li>
+</ul>
+<hr />
+<h2 id="methode-2-creation-etape-par-etape-cle-csr-certificat">Méthode 2 : Création étape par étape (Clé -&gt; CSR -&gt; Certificat)</h2>
+<p>Cette approche reproduit le cycle classique d'une PKI (<em>De la clé privée au certificat signé</em>).</p>
+<h3 id="1-generer-la-cle-privee">1. Générer la clé privée</h3>
+<pre><code class="language-bash">openssl genrsa -out serveur.key 4096
+</code></pre>
+<h3 id="2-creer-la-demande-de-signature-de-certificat-csr">2. Créer la demande de signature de certificat (CSR)</h3>
+<pre><code class="language-bash">openssl req -new -key serveur.key -out serveur.csr \
+  -subj &quot;/C=FR/ST=Centre-Val de Loire/L=Chartres/O=SportLudique/CN=www.sportludique.fr&quot;
+</code></pre>
+<h3 id="3-signer-le-certificat-avec-sa-propre-cle-privee">3. Signer le certificat avec sa propre clé privée</h3>
+<p>Créer d'abord un fichier d'extensions <code>san.ext</code> pour inclure les noms DNS :</p>
+<pre><code class="language-bash">echo &quot;subjectAltName=DNS:www.sportludique.fr,DNS:sportludique.fr&quot; &gt; san.ext
+</code></pre>
+<p>Générer ensuite le certificat final :</p>
+<pre><code class="language-bash">openssl x509 -req -in serveur.csr -signkey serveur.key -out serveur.crt \
+  -days 365 -sha256 -extfile san.ext
+</code></pre>
+<hr />
+<h2 id="verification-et-securisation">Vérification et sécurisation</h2>
+<h3 id="verifier-le-contenu-du-certificat">Vérifier le contenu du certificat</h3>
+<p>Pour contrôler les dates de validité, l'émetteur et les noms SAN :</p>
+<pre><code class="language-bash">openssl x509 -in serveur.crt -text -noout
+</code></pre>
+<h3 id="securiser-les-permissions-important">Sécuriser les permissions (Important)</h3>
+<p>La <strong>clé privée</strong> ne doit jamais être lisible par d'autres utilisateurs que <code>root</code> :</p>
+<pre><code class="language-bash">chmod 600 serveur.key
+chmod 644 serveur.crt
+</code></pre>
+<hr />
+<h2 id="limites-a-retenir">Limites à retenir</h2>
+<ul>
+<li><strong>Pas de chaîne de confiance :</strong> Le navigateur ne reconnaît pas l'émetteur et affiche un avertissement de sécurité.</li>
+<li><strong>Usage limité :</strong> À réserver aux phases de maquettage. En production ou pour le projet <em>SportLudique</em>, il faudra faire signer le CSR par l'<strong>Autorité de Certification (CA)</strong> interne du groupe.</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../Certificats-Sign%C3%A9-Autorit%C3%A9Goupe/" class="btn btn-neutral float-left" title="Documentation PKI — Autorité de Certification et certificat web"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../DNS/" class="btn btn-neutral float-right" title="DNS">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../Certificats-Sign%C3%A9-Autorit%C3%A9Goupe/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../DNS/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
