@@ -1,6 +1,6 @@
 ## Schéma logique 
 
-![mon schema](../assets/schema_l.png)
+![mon schema](../assets/schema_logique.png)
 
 
 ## Schéma Physique 
