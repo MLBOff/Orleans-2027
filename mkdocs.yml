@@ -3,3 +3,26 @@ site_url: https://mlboff.github.io/Orleans-2027/
 
 theme:
     name: material
+
+features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - navigation.footer
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.tabs.link
+
+  palette:
+    # Mode sombre par défaut
+    - scheme: slate
+      primary: indigo
+      accent: blue
+      toggle:
+        icon: material/brightness-7
+        name: Passer en mode clair
+
+    # Mode clair
+    - scheme: default
