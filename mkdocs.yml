@@ -2,4 +2,4 @@ site_name: My Docs
 site_url: https://mlboff.github.io/Orleans-2027/
 
 theme:
-    name: readthedocs
+    name: material
