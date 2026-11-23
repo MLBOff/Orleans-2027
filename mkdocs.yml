@@ -4,7 +4,7 @@ site_url: https://mlboff.github.io/Orleans-2027/
 theme:
     name: material
 
-features:
+    features:
     - navigation.tabs
     - navigation.sections
     - navigation.expand
@@ -15,7 +15,7 @@ features:
     - content.code.copy
     - content.tabs.link
 
-  palette:
+    palette:
     # Mode sombre par défaut
     - scheme: slate
       primary: indigo
@@ -26,3 +26,8 @@ features:
 
     # Mode clair
     - scheme: default
+      primary: indigo
+      accent: blue
+      toggle:
+        icon: material/brightness-4
+        name: Passer en mode sombre
