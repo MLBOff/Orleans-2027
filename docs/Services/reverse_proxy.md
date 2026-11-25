@@ -1,8 +1,8 @@
-# Documentation Technique — Reverse Proxy Nginx (`orleans.sportludique.fr`)
+## Documentation Technique — Reverse Proxy Nginx (`orleans.sportludique.fr`)
 
 ## 1. Architecture et Flux Réseau
 
-Le reverse proxy **Nginx** (`10.140.0.61`) centralise les requêtes entrantes HTTP/HTTPS pour le domaine `*.orleans.sportludique.fr`, assure la terminaison SSL via un certificat wildcard, et redirige le trafic vers les serveurs internes.
+Le reverse proxy **Nginx** (`192.168.147.131`) centralise les requêtes entrantes HTTP/HTTPS pour le domaine `*.orleans.sportludique.fr`, assure la terminaison SSL via un certificat wildcard, et redirige le trafic vers les serveurs internes.
 
 | Service / Site | Nom de domaine (FQDN) | Port Externe | Serveur Backend | Port Backend | Fichier de conf Nginx |
 | :--- | :--- | :--- | :--- | :--- | :--- |
